@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@nestjs/config": "^2.2.0",
+    "@typegoose/typegoose": "^7.6.3",
+    "@types/mongoose": "^5.11.97",
+    "mongoose": "^5.10.18",
+    "nestjs-typegoose": "^7.1.38"
+  }
+}
