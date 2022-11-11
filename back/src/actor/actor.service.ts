@@ -11,8 +11,8 @@ export class ActorService {
 
     async bySlug(slug: string) {
         const doc = await this.ActorModel.findOne({ slug }).exec();
-        if(!doc) throw new NotFoundException(` not found ${slug}`);
-        return doc
+        if (!doc) throw new NotFoundException(` not found ${slug}`);
+        return doc;
     }
 
     async getAll(searchTerm?: string) {
@@ -31,26 +31,37 @@ export class ActorService {
             }
         }
 
-        return this.ActorModel.find(options)
-            .select('-updatedAT -__v')
+        // Aggregetion
+
+        // return this.ActorModel.find(options)
+        //     .select('-updatedAT -__v')
+        //     .sort({
+        //         createdAt: 'desc'
+        //     })
+        //     .exec();
+
+        return this.ActorModel.aggregate().match(options).lookup({
+            from: "Movie",
+            localField: "_id",
+            foreignField: "actors",
+            as: "movies"
+        }).addFields({
+            countMovies: {
+                $size: '$movies'
+            }
+        }).project({
+            __v: 0, updatedAt: 0, 
+            // movies: 0
+        })
             .sort({
-                createdAt: 'desc'
+                createdAt: -1
             })
             .exec();
     }
 
-
-    async getCollection() {
-        // catalog genre
-        const actors = await this.getAll();
-        const collections = actors;
-        return collections
-    }
-    // admin place
-
     async byId(_id: string) {
         const actor = await this.ActorModel.findById(_id);
-        if (!actor) throw new NotFoundException(`Genre not found`);
+        if (!actor) throw new NotFoundException(`Actor not found`);
         return actor;
     }
 
@@ -60,7 +71,6 @@ export class ActorService {
             slug: '',
             photo: ''
         }
-        // console.log(defaultValue, 'defaultValue') 
         const actor = await this.ActorModel.create(defaultValue);
         return actor._id;
     }
@@ -70,7 +80,6 @@ export class ActorService {
         const updateActor = await this.ActorModel.findByIdAndUpdate(_id, dto, {
             new: true
         }).exec();
-
         if (!updateActor) throw new NotFoundException('Genre not found');
         return updateActor;
     }

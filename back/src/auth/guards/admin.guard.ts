@@ -1,18 +1,36 @@
-import { CanActivate, ExecutionContext, ForbiddenException } from "@nestjs/common";
-import { Reflector } from "@nestjs/core";
-import { Observable } from "rxjs";
-import { UserModel } from "src/user/user.model";
+// import { CanActivate, ExecutionContext, ForbiddenException } from "@nestjs/common";
+// import { Reflector } from "@nestjs/core";
+// import { UserModel } from "src/user/user.model";
 
+// export class OnlyAdminGuard implements CanActivate {
+//     constructor(private reflector: Reflector) { }
+
+//     canActivate(context: ExecutionContext): boolean {
+//         const request = context.switchToHttp().getRequest<{ user: UserModel }>();
+//         const user = request.user
+//         if (!user.isAdmin) throw new ForbiddenException('You have no permission vot-tak');
+//         return user.isAdmin;
+//     }
+// }
+
+import {
+	CanActivate,
+	ExecutionContext,
+	ForbiddenException,
+	Injectable,
+} from '@nestjs/common'
+import { Reflector } from '@nestjs/core'
+import { UserModel } from 'src/user/user.model'
+
+@Injectable()
 export class OnlyAdminGuard implements CanActivate {
-    constructor(private reflector: Reflector) {
+	constructor(private reflector: Reflector) {}
+	canActivate(context: ExecutionContext): boolean {
+		const request = context.switchToHttp().getRequest<{ user: UserModel }>()
+		const user = request.user
 
-    }
+		if (!user.isAdmin) throw new ForbiddenException('You have no rights!')
 
-    canActivate(context: ExecutionContext): boolean {
-        const request = context.switchToHttp().getRequest<{ user: UserModel }>();
-        const user = request.user
-
-        if (!user.isAdmin) throw new ForbiddenException('You have no permission');
-        return user.isAdmin;
-    }
+		return user.isAdmin
+	}
 }

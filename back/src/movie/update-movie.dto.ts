@@ -8,7 +8,7 @@ export class Parameters {
     duration: number;
 
     @IsString()
-    country: number;
+    country: string;
 }
 
 export class UpdateMovieDto {
@@ -41,6 +41,6 @@ export class UpdateMovieDto {
     @IsString({ each: true })
     actors: string[];
 
-    @IsBoolean()
+    // @IsBoolean()
     isSendTelegram?: boolean;
 }

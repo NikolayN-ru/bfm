@@ -5,7 +5,7 @@ export class UpdateUserDto {
     email: string;
 
     @IsString()
-    password: string;
+    password?: string;
 
     isAdmin: boolean;
 }

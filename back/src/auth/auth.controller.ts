@@ -14,14 +14,12 @@ export class AuthController {
         return this.authService.login(dto)
     }
 
-
     @UsePipes(new ValidationPipe())
     @HttpCode(200)
     @Post('login/access-token')
     async logetNewTokens(@Body() dto: RefreshTokenDto) {
         return this.authService.getNewTokens(dto)
     }
-
 
     @UsePipes(new ValidationPipe())
     @HttpCode(200)

@@ -14,7 +14,6 @@ export class AuthService {
         private readonly jwtService: JwtService,
     ) { }
 
-
     async login(dto: AuthDto) {
         const user = await this.validateUser(dto)
         // return this.validateUser(dto)
@@ -24,7 +23,6 @@ export class AuthService {
             ...tokens
         }
     }
-
 
     async getNewTokens({ refreshToken }: RefreshTokenDto) {
         if (!refreshToken) throw new UnauthorizedException("Refresh sign in!");
@@ -40,7 +38,6 @@ export class AuthService {
         }
     }
 
-
     async register(dto: AuthDto) {
         const oldUser = await this.UserModel.findOne({ email: dto.email });
         if (oldUser) {
@@ -50,13 +47,11 @@ export class AuthService {
         const newUser = new this.UserModel({
             email: dto.email,
             password: await hash(dto.password, salt),
-        });
-
-        const tokens = await this.issueTokenPair(String(newUser._id))
-
-        // return newUser.save();
+        })
+        const user = await newUser.save();
+        const tokens = await this.issueTokenPair(String(user._id))
         return {
-            user: this.returnUserFields(newUser),
+            user: this.returnUserFields(user),
             ...tokens
         }
     }
@@ -80,7 +75,7 @@ export class AuthService {
             expiresIn: '1h'
         })
 
-        return { accessToken, refreshToken };
+        return { refreshToken, accessToken };
     }
 
     returnUserFields(user: UserModel) {

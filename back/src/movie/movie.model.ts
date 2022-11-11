@@ -13,7 +13,7 @@ export class Parameters {
     duration: number;
 
     @prop()
-    country: number;
+    country: string;
 }
 
 export class MovieModel extends TimeStamps {
@@ -48,7 +48,7 @@ export class MovieModel extends TimeStamps {
     genres: Ref<GenreModel>[];
 
     @prop({ ref: () => ActorModel })
-    actor: Ref<ActorModel>[];
+    actors: Ref<ActorModel>[];
 
     @prop({ default: false })
     isSendTelegram?: boolean;

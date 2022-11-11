@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ModelType } from '@typegoose/typegoose/lib/types';
+import { Types } from 'mongoose';
 import { InjectModel } from 'nestjs-typegoose';
 import { CreateGenreDto } from './dto/createGenre.dto';
 import { GenreModel } from './genre.model';
@@ -17,7 +18,6 @@ export class GenreService {
 
     async getAll(searchTerm?: string) {
         let options = {}
-
         if (searchTerm) {
             options = {
                 $or: [
@@ -33,7 +33,6 @@ export class GenreService {
                 ]
             }
         }
-
         return this.GenreModel.find(options)
             .select('-updatedAT -__v')
             .sort({
@@ -57,31 +56,28 @@ export class GenreService {
         return genre;
     }
 
-    async create() {
+    async create(): Promise<Types.ObjectId> {
         const defaultValue: CreateGenreDto = {
             name: '',
             slug: '',
             description: '',
             icon: ''
         }
-        // console.log(defaultValue, 'defaultValue') 
         const genre = await this.GenreModel.create(defaultValue);
         return genre._id;
     }
 
     async update(_id: string, dto: CreateGenreDto) {
-        //отдаем новую версию жанра
-
-
         const updateGenre = await this.GenreModel.findByIdAndUpdate(_id, dto, {
             new: true
         }).exec();
-
-        if(!updateGenre) throw new NotFoundException('Genre not found');
+        if (!updateGenre) throw new NotFoundException('Genre not found');
         return updateGenre;
     }
 
     async delete(id: string) {
-        return this.GenreModel.findByIdAndDelete(id).exec();
+        const deleteDoc = this.GenreModel.findByIdAndDelete(id).exec();
+        if (!deleteDoc) throw new NotFoundException('Genre not found');
+        return deleteDoc;
     }
 }

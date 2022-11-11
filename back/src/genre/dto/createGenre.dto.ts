@@ -1,15 +1,15 @@
 import { IsString } from "class-validator";
 
 export class CreateGenreDto {
-    @IsString()
+    // @IsString()
     name: string;
 
-    @IsString()
+    // @IsString()
     slug: string;
 
-    @IsString()
+    // @IsString()
     description: string;
     
-    @IsString()
+    // @IsString()
     icon: string;
 }

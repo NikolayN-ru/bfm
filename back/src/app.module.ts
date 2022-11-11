@@ -11,6 +11,8 @@ import { FileModule } from './file/file.module';
 import { ActorModule } from './actor/actor.module';
 import { YarnModule } from './yarn/yarn.module';
 import { MovieModule } from './movie/movie.module';
+import { RatingModule } from './rating/rating.module';
+import { TelegramModule } from './telegram/telegram.module';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { MovieModule } from './movie/movie.module';
     ActorModule,
     YarnModule,
     MovieModule,
+    RatingModule,
+    TelegramModule,
   ],
   controllers: [AppController],
   providers: [AppService],

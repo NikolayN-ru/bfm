@@ -1,9 +1,11 @@
 import React, { FC } from 'react'
+import { ILoyout } from './Layout.interface';
 import styles from './Layout.module.scss';
 import Navigation from './Navigation/Navigation';
 import Sidebar from './Sidebar/Sidebar';
 
-const Layout: FC<any> = ({ children = '<p>none</p>' }) => {
+const Layout: FC<ILoyout> = ({ children = '<p>none</p>' }) => {
+
   return (
     <div className={styles.app}>
       <Navigation />
@@ -16,4 +18,4 @@ const Layout: FC<any> = ({ children = '<p>none</p>' }) => {
   )
 }
 
-export default Layout
+export default Layout;

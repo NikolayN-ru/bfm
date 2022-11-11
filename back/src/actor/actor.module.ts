@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
 import { TypegooseModule } from 'nestjs-typegoose';
 import { ActorController } from './actor.controller';
 import { ActorModel } from './actor.model';
@@ -17,7 +16,6 @@ import { ActorService } from './actor.service';
         }
       }
     ]),
-    // ConfigModule
   ],
 })
 export class ActorModule { }

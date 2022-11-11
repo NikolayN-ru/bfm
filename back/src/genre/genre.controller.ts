@@ -7,9 +7,7 @@ import { GenreService } from './genre.service';
 @Controller('genres')
 export class GenreController {
 
-    constructor(private readonly genreService: GenreService) {
-
-    }
+    constructor(private readonly genreService: GenreService) { }
 
     @Get('by-slug/:slug')
     async getProfile(@Param('slug') slug: string) {

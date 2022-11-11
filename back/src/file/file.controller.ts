@@ -1,4 +1,4 @@
-import { Controller, Delete, HttpCode, HttpStatus, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, HttpCode, HttpStatus, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FileService } from './file.service';
 
@@ -17,5 +17,11 @@ export class FileController {
     @HttpCode(200)
     async deleteFile() {
         return
+    }
+
+    @Post('delete')
+    @HttpCode(200)
+    async removeFile(@Body('file') file: string){
+        return this.fileService.removeFile(file);
     }
 }
