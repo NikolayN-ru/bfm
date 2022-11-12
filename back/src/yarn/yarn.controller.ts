@@ -1,3 +1,4 @@
+import { ITagModel } from './interface/tag.interface';
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CategoryDto } from './dto/category.dto';
 import { CreateYarnDto } from './dto/CreateYarn.dto';
@@ -5,11 +6,40 @@ import { YarnDto } from './dto/yarn.dto';
 import { IYarnModel } from './interface/yarn.interface';
 import { CategoryModel } from './models/category.model';
 import { YarnService } from './yarn.service';
+import { Types } from 'mongoose';
+import { TagDto } from './dto/tag.dto';
 
 @Controller('yarn')
 export class YarnController {
 
     constructor(private readonly yarnService: YarnService) { }
+
+    //TagController
+
+    @Get('tag/all')
+    async getTagsAll(): Promise<ITagModel[]> {
+        return await this.yarnService.getTagsAll();
+    }
+
+    @Get('tag/:id')
+    async getTag(@Param('id') id: string): Promise<ITagModel> {
+        return await this.yarnService.getTag(id);
+    }
+
+    @Post('tag/')
+    async createTag(): Promise<Types.ObjectId> {
+        return await this.yarnService.createTag();
+    }
+
+    @Put('tag/:id')
+    async updateTag(@Param('id') id: string, @Body() dto: TagDto): Promise<any>{
+        return await this.yarnService.updateTag(id, dto);
+    }
+
+    @Delete('tag/:id')
+    async deleteTag(@Param('id') id: string): Promise<any>{
+        return await this.yarnService.deleteTag(id);
+    }
 
     //CategoryController
     @Post('category')

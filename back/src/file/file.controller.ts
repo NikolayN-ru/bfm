@@ -1,5 +1,6 @@
 import { Body, Controller, Delete, HttpCode, HttpStatus, Post, Query, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { request } from 'http';
 import { FileService } from './file.service';
 
 @Controller('files')
@@ -8,8 +9,9 @@ export class FileController {
 
     @Post()
     @HttpCode(200)
-    @UseInterceptors(FileInterceptor('file'))
+    @UseInterceptors(FileInterceptor('fileData'))
     async uploadFile(@UploadedFile() file: Express.Multer.File, @Query('folder') folder?: string) {
+        // console.log(folder, file)
         return this.fileService.saveFiles([file], folder);
     }
 
@@ -21,7 +23,7 @@ export class FileController {
 
     @Post('delete')
     @HttpCode(200)
-    async removeFile(@Body('file') file: string){
+    async removeFile(@Body('fileData') file: string){
         return this.fileService.removeFile(file);
     }
 }

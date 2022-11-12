@@ -8,6 +8,7 @@ import * as fs from 'fs';
 @Injectable()
 export class FileService {
     async saveFiles(files: Express.Multer.File[], folder: string = 'default'): Promise<FileResponse[]> {
+        // console.log(files, 'files');
         const uploadFolder = `${path}/uploads/${folder}`
         await ensureDir(uploadFolder)
         const res: FileResponse[] = await Promise.all(

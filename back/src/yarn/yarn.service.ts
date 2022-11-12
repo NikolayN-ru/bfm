@@ -9,13 +9,50 @@ import { CategoryModel } from './models/category.model';
 import { ICategoryModel } from './interface/category.interface';
 import { CategoryDto } from './dto/category.dto';
 import { Types } from 'mongoose';
+import { TagModel } from './models/tag.model';
+import { ITagModel } from './interface/tag.interface';
+import { TagDto } from './dto/tag.dto';
 
 @Injectable()
 export class YarnService {
+
     constructor(
         @InjectModel(YarnModel) private readonly yarnModel: ModelType<IYarnModel>,
-        @InjectModel(CategoryModel) private readonly categoryModel: ModelType<ICategoryModel>
+        @InjectModel(CategoryModel) private readonly categoryModel: ModelType<ICategoryModel>,
+        @InjectModel(TagModel) private readonly tagModel: ModelType<ITagModel>
     ) { }
+
+    //TagService
+    async getTagsAll(): Promise<ITagModel[]> {
+        return await this.tagModel.find();
+    }
+
+    async getTag(_id: string): Promise<TagDto> {
+        if (_id.length != 24) throw new NotFoundException('id not be 24 characters');
+        const tag = await this.tagModel.findOne({ _id }).exec();
+        if (!tag) throw new NotFoundException('tag not found');
+        return tag;
+    }
+
+    async createTag(): Promise<Types.ObjectId> {
+        const defaultValue: TagDto = {
+            title: '',
+        }
+        const tag = await this.tagModel.create(defaultValue);
+        return tag._id;
+    }
+
+    async updateTag(id: string, dto: TagDto): Promise<TagDto> {
+        const updateTag = await this.tagModel.findByIdAndUpdate(id, dto, {
+            new: true
+        }).exec();
+        if (!updateTag) throw new NotFoundException('Tag not found');
+        return updateTag;
+    }
+
+    async deleteTag(id: string): Promise<TagDto | ITagModel> { // что мы возвращаем ? промис от чего
+        return await this.tagModel.findByIdAndDelete(id);
+    }
 
     //CategoryService
 
@@ -84,11 +121,11 @@ export class YarnService {
     }
 
     async delete(id: string): Promise<IYarnModel> {
-        return this.yarnModel.findByIdAndDelete(id)
+        return this.yarnModel.findByIdAndDelete(id);
     }
 
     async patch(id: string): Promise<IYarnModel> {
-        const candidate = await this.yarnModel.findById(id)
-        return candidate
+        const candidate = await this.yarnModel.findById(id);
+        return candidate;
     }
 }
