@@ -1,0 +1,21 @@
+.wrapper {
+    background-color: rgb(50, 160, 68);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    opacity: 0.7;
+    // margin-left: 10px;
+}
+
+.wrapper:hover{
+    background-color: rgb(45, 96, 29);
+    color: white;
+    opacity: 0.99;
+}
+
+.wrapper:active{
+    background-color: rgb(20, 51, 20);
+}
+

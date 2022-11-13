@@ -1,0 +1,25 @@
+.wrapper {
+    width: 400px;
+    padding: 20px;
+    background-color: #f6f8fa;
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+
+.tag {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.title {
+    padding-top: 10px;
+    // padding-left: 30px;
+    font-size: 20px;
+    font-weight: 300;
+}

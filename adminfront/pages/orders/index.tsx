@@ -3,7 +3,7 @@ import Menu from "../../components/Menu/Menu"
 const index = () => {
     return (
         <div>
-            <Menu />
+            {/* <Menu /> */}
             Orders
         </div>
     )

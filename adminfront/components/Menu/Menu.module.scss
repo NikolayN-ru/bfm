@@ -1,8 +1,9 @@
 .wrapper {
     width: 300px;
     // height: 250px;
-    background-color: rgb(160, 59, 59);
-    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    // border-radius: 4px;
+    color: #25292e;
 }
 
 .list {
@@ -12,8 +13,12 @@
 .item {
     cursor: pointer;
     padding: 20px;
+    border-left: 3px solid #ffffff;
+    transition: all .3s;
 }
 
 .item:hover {
-    background-color: rgb(35, 168, 88);
+    background-color: #f0f2f4;
+    border-left: 3px solid #2a6ad3;
+    font-weight: 500;
 }

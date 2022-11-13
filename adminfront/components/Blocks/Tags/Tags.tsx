@@ -5,6 +5,9 @@ import {
     useAddDescTagMutation,
     useDeleteTagMutation
 } from "../../../redux/tagsApi";
+import ButtonOff from "../../Buttons/ButtonOff/ButtonOff";
+import ButtonOk from "../../Buttons/ButtonOK/ButtonOk";
+import styles from './Tags.module.scss';
 
 const Tags: FC = () => {
     const [state, setState] = useState<string>('');
@@ -28,6 +31,7 @@ const Tags: FC = () => {
 
     const addDescriptionTag = async (id: any) => {
         await updateTag({ "title": state, "id": id }).unwrap();
+        setState('');
     }
 
     const deleteTagFunc = async (id: any) => {
@@ -36,27 +40,27 @@ const Tags: FC = () => {
     }
 
     return (
-        <div>
-            <button onClick={() => createTag()}>NEW TAG</button>
-            <div>
+        <div className={styles.wrapper}>
+            <p>Теги:</p>
+            <div >
                 {data.map((tag: any, id: number) => {
                     return (
-                        tag.title ? <div>
-                            <>
-                                <span key={id}>{tag.title}</span>
+                        tag.title ? <div className={styles.tags}>
+                            <div className={styles.tag}>
+                                <span key={id} className={styles.title}>{tag.title}</span>
                                 {
                                     (activeDeleteTag == tag._id) ? "DELETE-TAG" :
-                                        <button onClick={() => deleteTagFunc(tag._id)}>delete tag</button>
+                                        <ButtonOff delFunc={() => deleteTagFunc(tag._id)} title='удалить тег' />
                                 }
-                                <hr />
-                            </>
+                            </div>
                         </div> :
                             <div>
                                 {
                                     isLoading2 ? "UPDATE-TAG" :
                                         <>
-                                            <input type="text" value={state} onChange={(e) => setState(e.target.value)} />
-                                            <button onClick={() => addDescriptionTag(tag._id)}>ADD-description-tag</button>
+                                            <input type="text" value={state} onChange={(e) => setState(e.target.value)} style={{ margin: '5px', width:'115px', marginBottom: '20px' }} />
+                                            {/* <button onClick={() => addDescriptionTag(tag._id)}>ADD-description-tag</button> */}
+                                            <ButtonOk okFunc={() => addDescriptionTag(tag._id)} title='добавить тег' />
                                         </>
                                 }
                             </div>
@@ -64,14 +68,16 @@ const Tags: FC = () => {
                 }
                 )}
             </div>
-            <select value={count} onChange={(e) => setCount(e.target.value)}>
+            {/* <select value={count} onChange={(e) => setCount(e.target.value)}>
                 <option value="">All</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
             <br />
-            <hr />
+            <hr /> */}
+            {/* <button onClick={() => createTag()}>г</button> */}
+            <ButtonOk okFunc={createTag} title='добавить новый тег' />
         </div>
     )
 }
