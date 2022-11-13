@@ -1,5 +1,17 @@
 .menu {
-    width: 100%;
+    margin: 0 auto;
+    padding: 30px;
     display: flex;
-    gap: 30px;
+}
+
+.item {
+    cursor: pointer;
+    padding: 20px;
+    background-color: rgb(118, 85, 165);
+    color: rgb(216, 216, 216);
+}
+
+.item:hover {
+    background-color: rgb(95, 67, 133);
+    color: white;
 }

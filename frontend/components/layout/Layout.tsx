@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import Filter from '../Filter/Filter';
 import MainMenu from '../MainMenu/MainMenu';
 import { ILoyout } from './Layout.interface';
 import styles from './Layout.module.scss';
@@ -9,10 +10,13 @@ const Layout: FC<ILoyout> = ({ children }) => {
 
   return (
     <div className={styles.app}>
-      {/* <Navigation /> */}
       <MainMenu />
+      {/* <Navigation /> */}
       {/* <Sidebar /> */}
-      <div>{children}</div>
+      <div className={styles.main}>
+        <Filter />
+        <div>{children}</div>
+      </div>
     </div>
   )
 }

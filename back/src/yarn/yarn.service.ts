@@ -42,7 +42,9 @@ export class YarnService {
         return tag._id;
     }
 
-    async updateTag(id: string, dto: TagDto): Promise<TagDto> {
+    // async updateTag(id: string, dto: TagDto): Promise<TagDto> {
+    async updateTag(dto: any): Promise<TagDto> {
+        const {id} = dto;
         const updateTag = await this.tagModel.findByIdAndUpdate(id, dto, {
             new: true
         }).exec();

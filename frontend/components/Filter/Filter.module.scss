@@ -1,0 +1,24 @@
+.wrapper {
+    width: 200px;
+    padding: 20px;
+    background-color: rgb(118, 85, 165);
+    color: rgb(216, 216, 216);
+}
+
+.btn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    color:rgb(52, 88, 154);
+    background-color: rgb(201, 197, 204);
+    border: none;
+}
+
+.btn:hover {
+    color: rgb(46, 78, 133);
+    background-color: rgb(230, 236, 245);
+}
+
+.btn:active {
+    opacity: 0.7;
+}

@@ -5,15 +5,15 @@ const items = [
     { title: 'статистика', link: '/statistics', },
     { title: 'продукты', link: '/products', },
     { title: 'заказы', link: '/orders', },
-    // { title: '', link: '', },
+    { title: 'вариации', link: '/variables', },
 ]
 
 const Menu = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.list}>
-                {items.map((item) => (
-                    <Link href={`${item.link}`} >
+                {items.map((item, id: number) => (
+                    <Link key={id} href={`${item.link}`} >
                         <div className={styles.item}>
                             {item.title}
                         </div>
@@ -23,4 +23,4 @@ const Menu = () => {
         </div>
     )
 }
-export default Menu
+export default Menu;

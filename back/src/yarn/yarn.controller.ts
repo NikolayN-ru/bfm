@@ -31,9 +31,12 @@ export class YarnController {
         return await this.yarnService.createTag();
     }
 
-    @Put('tag/:id')
-    async updateTag(@Param('id') id: string, @Body() dto: TagDto): Promise<any> {
-        return await this.yarnService.updateTag(id, dto);
+    // @Put('tag/:id')
+    @Put('tag')
+    // async updateTag(@Param('id') id: string, @Body() dto: TagDto): Promise<any> {
+    async updateTag(@Body() dto: any): Promise<any> {
+        // return await this.yarnService.updateTag(id, dto);
+        return await this.yarnService.updateTag(dto);
     }
 
     @Delete('tag/:id')

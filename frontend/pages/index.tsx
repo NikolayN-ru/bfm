@@ -34,15 +34,15 @@ const HomePage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-
+        <div className={styles.items}>
+          {state && state.map((item: any, id: number) => (
+            <ItemProduct key={id} name={item.name} image={item.image} id={item._id} price={item.price} />
+          )
+          )}
+        </div>
       </Layout>
       {/* <Home /> */}
-      <div className={styles.items}>
-        {state && state.map((item: any, id: number) => (
-          <ItemProduct key={id} name={item.name} image={item.image} id={item._id} price={item.price} />
-        )
-        )}
-      </div>
+
     </div>
   )
 }
