@@ -117,7 +117,11 @@ export class YarnService {
     }
 
     async getAll(): Promise<IYarnModel[]> {
-        return this.yarnModel.find().populate('category')
+        return this.yarnModel.find().populate('category tags')
+    }
+
+    async getById(_id): Promise<IYarnModel> {
+        return this.yarnModel.findOne({_id}).populate('tags category').exec();
     }
 
     async delete(id: string): Promise<IYarnModel> {

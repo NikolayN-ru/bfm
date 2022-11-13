@@ -1,5 +1,6 @@
 import React from 'react'
 import Select from 'react-select'
+import Layout from '../../components/layout/Layout'
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },
@@ -10,12 +11,15 @@ const options = [
 const Index = () => {
     return (
         <div>
+            <Layout>
+                   
+            </Layout>
             <div>
-                <Select
-                    placeholder='placeholder'
-                    options={options}
-                    isSearchable={true}
-                />
+            <Select
+                        placeholder='placeholder'
+                        options={options}
+                        isSearchable={true}
+                    />
             </div>
         </div>
     )

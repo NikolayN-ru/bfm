@@ -1,0 +1,19 @@
+.wrapper {
+    width: 300px;
+    // height: 250px;
+    background-color: rgb(160, 59, 59);
+    border-radius: 4px;
+}
+
+.list {
+    padding: 20px;
+}
+
+.item {
+    cursor: pointer;
+    padding: 20px;
+}
+
+.item:hover {
+    background-color: rgb(35, 168, 88);
+}

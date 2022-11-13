@@ -32,12 +32,12 @@ export class YarnController {
     }
 
     @Put('tag/:id')
-    async updateTag(@Param('id') id: string, @Body() dto: TagDto): Promise<any>{
+    async updateTag(@Param('id') id: string, @Body() dto: TagDto): Promise<any> {
         return await this.yarnService.updateTag(id, dto);
     }
 
     @Delete('tag/:id')
-    async deleteTag(@Param('id') id: string): Promise<any>{
+    async deleteTag(@Param('id') id: string): Promise<any> {
         return await this.yarnService.deleteTag(id);
     }
 
@@ -75,6 +75,11 @@ export class YarnController {
     @HttpCode(200)
     async getAll(): Promise<IYarnModel[]> {
         return this.yarnService.getAll();
+    }
+
+    @Get(':id')
+    async getId(@Param('id') id: string): Promise<IYarnModel> {
+        return this.yarnService.getById(id);
     }
 
     @Delete(':id')

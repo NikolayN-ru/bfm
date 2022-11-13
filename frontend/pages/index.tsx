@@ -1,11 +1,31 @@
+import axios from 'axios'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
+import ItemProduct from '../components/ItemProduct/ItemProduct'
 import Layout from '../components/layout/Layout'
 import Home from '../components/screens/home/Home'
 import Testing from '../components/testing'
-import styles from '../styles/Home.module.scss'
+import styles from './main.module.scss';
 
 const HomePage = () => {
+
+  const [state, setState] = useState<any>([]);
+
+  const updateProduct = () => {
+    axios.get('http://localhost:4200/api/yarn/all')
+      .then((res) => {
+        // console.log(res.data)
+        setState(res.data);
+      })
+  }
+
+  useEffect(() => {
+    updateProduct()
+  }, [])
+
+  console.log(state)
+
   return (
     <div className={styles.container}>
       <Head>
@@ -14,12 +34,15 @@ const HomePage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <Home />
 
       </Layout>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      {/* <Home /> */}
+      <div className={styles.items}>
+        {state && state.map((item: any, id: number) => (
+          <ItemProduct key={id} name={item.name} image={item.image} id={item._id} price={item.price} />
+        )
+        )}
+      </div>
     </div>
   )
 }
