@@ -1,0 +1,68 @@
+.owerwrap {
+    width: 100%;
+}
+
+.wrapper {
+    max-width: 100%;
+    display: flex;
+    gap: 50px;
+    margin-bottom: 50px;
+}
+
+.left {
+    width: 500px;
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+
+    button {
+        padding: 8px;
+        border: none;
+        background-color: rgb(255, 123, 0);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: rgb(255, 28, 7);
+    }
+
+    .item {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: rgb(234, 234, 234);
+        color: rgb(110, 110, 110)
+    }
+
+    .item:hover {
+        background-color: rgb(194, 193, 193);
+        opacity: 0.6;
+    }
+}
+
+
+
+.right {
+    width: 200px;
+    height: 300px;
+
+    p,
+     {
+        font-size: 14px;
+        color: rgb(110, 110, 110);
+    }
+    span {
+        color: rgb(110, 110, 110);
+        font-size: 18px;
+    }
+
+    button {
+        padding: 8px;
+        border: none;
+        background-color: rgb(75, 169, 84);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+    }
+}

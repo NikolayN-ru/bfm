@@ -5,13 +5,11 @@ import styles from './Variables.module.scss';
 
 const Variables = () => {
 
-
     return (
         <div className={styles.wrapper}>
             {/* <Menu /> */}
-
-                <Tags />
-                <Category/>
+            <Tags />
+            <Category />
         </div>
     )
 }

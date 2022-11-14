@@ -44,7 +44,7 @@ export class YarnService {
 
     // async updateTag(id: string, dto: TagDto): Promise<TagDto> {
     async updateTag(dto: any): Promise<TagDto> {
-        const {id} = dto;
+        const { id } = dto;
         const updateTag = await this.tagModel.findByIdAndUpdate(id, dto, {
             new: true
         }).exec();
@@ -86,6 +86,19 @@ export class YarnService {
         }).exec();
     }
 
+    async getCategoryStatistics() {
+        const doc = await this.categoryAllAgregate();
+        // console.log('doc', doc);
+        let count:number = 0;
+        doc.forEach((item: any) => {
+            console.log(item)
+            // item.variables.forEach((itemVar: any) => {
+                // count += itemVar.count * item.price
+            // })
+        })
+        console.log(count, 'count');
+    }
+
     //YarnService
 
     // async addYarnItem(dto: CreateYarnDto): Promise<IYarnModel> {
@@ -123,7 +136,7 @@ export class YarnService {
     }
 
     async getById(_id): Promise<IYarnModel> {
-        return this.yarnModel.findOne({_id}).populate('tags category').exec();
+        return this.yarnModel.findOne({ _id }).populate('tags category').exec();
     }
 
     async delete(id: string): Promise<IYarnModel> {

@@ -45,38 +45,29 @@ const Tags: FC = () => {
             <div >
                 {data.map((tag: any, id: number) => {
                     return (
-                        tag.title ? <div className={styles.tags}>
+                        tag.title ? <div className={styles.tags} key={id}>
                             <div className={styles.tag}>
-                                <span key={id} className={styles.title}>{tag.title}</span>
+                                <span className={styles.title}>{tag.title}</span>
                                 {
                                     (activeDeleteTag == tag._id) ? "DELETE-TAG" :
                                         <ButtonOff delFunc={() => deleteTagFunc(tag._id)} title='удалить тег' />
                                 }
                             </div>
                         </div> :
-                            <div>
+                            <div >
                                 {
                                     isLoading2 ? "UPDATE-TAG" :
-                                        <>
-                                            <input type="text" value={state} onChange={(e) => setState(e.target.value)} style={{ margin: '5px', width:'115px', marginBottom: '20px' }} />
+                                        <div >
+                                            <input type="text" value={state} onChange={(e) => setState(e.target.value)} style={{ margin: '5px', width: '115px', marginBottom: '20px' }} />
                                             {/* <button onClick={() => addDescriptionTag(tag._id)}>ADD-description-tag</button> */}
                                             <ButtonOk okFunc={() => addDescriptionTag(tag._id)} title='добавить тег' />
-                                        </>
+                                        </div>
                                 }
                             </div>
                     )
                 }
                 )}
             </div>
-            {/* <select value={count} onChange={(e) => setCount(e.target.value)}>
-                <option value="">All</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <br />
-            <hr /> */}
-            {/* <button onClick={() => createTag()}>г</button> */}
             <ButtonOk okFunc={createTag} title='добавить новый тег' />
         </div>
     )

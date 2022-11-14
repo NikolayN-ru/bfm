@@ -1,0 +1,23 @@
+.btn {
+    padding: 20px;
+    margin: 20px;
+    margin-left: 0;
+    background-color: rgb(142, 193, 30);
+    color: rgb(255, 255, 255);
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all .3s;
+    border-radius: 5px;
+}
+
+.btn:hover {
+    background-color: rgb(231, 165, 22);
+    // font-size: 22px;
+}
+
+.btn:active {
+    background-color: rgb(143, 110, 41);
+    // font-size: 22px;
+}

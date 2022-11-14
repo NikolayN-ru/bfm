@@ -1,10 +1,13 @@
+import Products from "../../components/Blocks/Products/Products"
 import Menu from "../../components/Menu/Menu"
 
 const index = () => {
+
+
     return (
-        <div>
-            {/* <Menu />  */}
-            products</div>
+        // <div className={styles.wrapper}>
+            <Products />
+        // </div>
     )
 }
 export default index

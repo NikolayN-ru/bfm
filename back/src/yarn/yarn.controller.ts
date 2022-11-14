@@ -45,6 +45,12 @@ export class YarnController {
     }
 
     //CategoryController
+    @Get('category/statistics')
+    async getCategoryStatistics(): Promise<any> {
+        return await this.yarnService.getCategoryStatistics();
+    }
+
+
     @Post('category')
     async newCategory(): Promise<any> {
         return this.yarnService.categoryAdd();

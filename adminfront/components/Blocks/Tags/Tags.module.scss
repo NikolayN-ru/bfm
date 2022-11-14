@@ -7,14 +7,19 @@
 .tags {
     display: flex;
     flex-direction: row;
-    gap: 30px;
+    // gap: 30px;
 }
 
 .tag {
+    padding: 10px;
+    cursor: pointer;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    // margin-bottom: 20px;
+}
+.tag:hover {
+    background-color: #93a5b7;
 }
 
 .title {

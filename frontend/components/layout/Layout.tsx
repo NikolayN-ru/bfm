@@ -11,11 +11,10 @@ const Layout: FC<ILoyout> = ({ children }) => {
   return (
     <div className={styles.app}>
       <MainMenu />
-      {/* <Navigation /> */}
-      {/* <Sidebar /> */}
       <div className={styles.main}>
-        <Filter />
-        <div>{children}</div>
+        <div style={{ display: "flex", gap: "20px" }}>
+          {children}
+        </div>
       </div>
     </div>
   )

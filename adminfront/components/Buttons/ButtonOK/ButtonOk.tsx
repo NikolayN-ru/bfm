@@ -3,10 +3,10 @@ import styles from "./ButtonOk.module.scss";
 
 interface IButtonOk {
     title: string;
-    okFunc: () => void;
+    okFunc?: () => void;
 }
 
-const ButtonOk: FC<IButtonOk> = ({ title = 'ButtonOk', okFunc }): JSX.Element => {
+const ButtonOk: FC<IButtonOk> = ({ title = 'ButtonOk', okFunc=()=>{} }): JSX.Element => {
     return (
         <button className={styles.wrapper} onClick={()=>okFunc()}>{title}</button>
     )

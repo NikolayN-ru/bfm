@@ -1,46 +1,78 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import ButtonCart from "../../../components/Buttons/ButtonCart/ButtonCart";
 import Layout from "../../../components/layout/Layout";
+import Variables from "../../../components/Variables/Variables";
+import { useGetProductQuery } from "../../../redux/productApi";
+import styles from "./productId.module.scss";
 
 const index = () => {
-    const path = 'http://localhost:4200'
-    const [state, setState] = useState<any>([]);
+    const router = useRouter()
+    const { data = [], isLoading } = useGetProductQuery(router.query.id);
+    const path = 'http://localhost:4200';
 
-    const updateProduct = () => {
-        axios.get(`http://localhost:4200/api/yarn/${window.location.href.split('/')[4]}`)
-            .then((res) => {
-                // console.log(res.data)
-                setState(res.data);
-            })
+    const [variables, setVariables] = useState<any>([]);
+    const [image, setImage] = useState<string>('');
+    const [inputValue, setInputValue] = useState<number>(0);
+
+    const setVariable = (item: any) => {
+        setVariables(item);
+        setInputValue(0);
+    }
+    const inc = () => {
+        // console.log(variables.count, inputValue)
+        if (variables.count > inputValue) {
+            setInputValue(prev => prev += 1)
+        }
     }
 
-    useEffect(() => {
-        updateProduct()
-    }, [])
-
-    const q = state.variables;
-    const tags = state.tags;
+    const dec = () => {
+        if (inputValue > 0) setInputValue(prev => prev -= 1)
+    }
+    // console.log(variables)
 
     return (
         <div>
             <Layout />
-            {state &&
-                <div>
-                    <img src={`${path}${state.image}`} alt="" width='150' />
-                    <p>{state.name}</p>
-                    <p>{state.country}</p>
-                    <p>{state.description}</p>
-                    <p>length - {state.length}</p>
-                    <p>price - {state.price}</p>
-                    <p>price - {state.wieght}</p>
-                    <div>
-                        состав - {tags && tags.map((item: any, id:number) => <p key={id}>{item.title}</p>)}
-                        {/* variables - {console.log(q, 'q')} */}
-                        {q && q.map((item: any, id:number) => <p key={id}>{item.number}</p>)}
+            <div className={styles.wrapper}>
+                <div className={styles.right}>
+                    {
+                        variables.image ? <img src={`${path}${variables.image}`} alt="" /> :
+                            <img src={`${path}${data.image}`} alt="" />
+                    }
+                </div>
+                <div className={styles.left}>
+                    <div className={styles.title}><h3>{data.name}</h3></div>
+                    <div className={styles.title}>страна производитель: {data.country}</div>
+                    <div className={styles.title}>фирма производитель: {data.category && data.category[0].title}</div>
+                    <div className={styles.title}>длинна: {data.length} метров.</div>
+                    <div className={styles.title}>рекомендуемые спицы - {data.needles}</div>
+                    <div className={styles.title}>вес мотка:  {data.wieght} грамм.</div>
+                    <div className={styles.price}>цена: {data.price} руб.</div>
+                    <div className={styles.count}>
+                        <button onClick={dec}>-</button>
+                        <p>{inputValue}</p>
+                        <button onClick={inc}>+</button>
                     </div>
-                </div>}
+                    <ButtonCart title='в корзину' active={false} />
+                    <div className={styles.wrapperVariables}>
+                        {data.variables && data.variables.map((item: any, id: number) => {
+                            return (
+                                (item.number === variables.number) ?
+                                    <div className={styles.border} key={id}>
+                                        <Variables title={item.number} funcActive={() => setVariable(item)} />
+                                    </div> :
+                                    <Variables key={id} title={item.number} funcActive={() => setVariable(item)} />
+                            );
+                        })}
+                    </div>
+                    <p className={styles.title}>{variables.count && <span>кол-во мотков: {variables.count} </span>}</p>
+                </div>
+            </div>
+            {/* <div className={styles.under}><p>описание товара: {data.description}</p> */}
+            {/* <div className={styles.sostav}>состав:  {data.tags && data.tags.map((item: any) => <p>{item.title}</p>)} грамм.</div> */}
+            {/* </div> */}
         </div>
     )
 }

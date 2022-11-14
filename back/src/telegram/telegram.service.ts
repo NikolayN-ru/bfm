@@ -15,7 +15,8 @@ export class TelegramService {
     }
 
     async sendMessage(msg: string, options?: ExtraReplyMessage, chatId: string = this.options.chatId) {
-        const newMessage = `applay new Order ${msg}`
+        // new Date().getDate()
+        const newMessage = `новый заказ ${msg}`
         await this.bot.telegram.sendMessage(chatId, newMessage, {
             parse_mode: 'HTML',
             ...options,
