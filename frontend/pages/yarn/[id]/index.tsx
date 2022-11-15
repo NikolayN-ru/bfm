@@ -6,11 +6,16 @@ import Layout from "../../../components/layout/Layout";
 import Variables from "../../../components/Variables/Variables";
 import { useGetProductQuery } from "../../../redux/productApi";
 import styles from "./productId.module.scss";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem } from "../../../redux/cartReducer";
 
 const index = () => {
-    const router = useRouter()
+    const router = useRouter();
     const { data = [], isLoading } = useGetProductQuery(router.query.id);
     const path = 'http://localhost:4200';
+
+    // const store = useSelector((state:any) => state.cart)
+    const dispatch = useDispatch();
 
     const [variables, setVariables] = useState<any>([]);
     const [image, setImage] = useState<string>('');
@@ -20,17 +25,31 @@ const index = () => {
         setVariables(item);
         setInputValue(0);
     }
+
     const inc = () => {
         // console.log(variables.count, inputValue)
         if (variables.count > inputValue) {
-            setInputValue(prev => prev += 1)
+            setInputValue(prev => prev += 1);
         }
     }
 
     const dec = () => {
-        if (inputValue > 0) setInputValue(prev => prev -= 1)
+        if (inputValue > 0) setInputValue(prev => prev -= 1);
     }
     // console.log(variables)
+
+    const addToCart = () => {
+        if (variables.color) {
+            const Candidate = {
+                "title": data.name,
+                "image": variables.image,
+                "color": variables.color,
+                "count": inputValue,
+                "price": data.price
+            }
+            dispatch(addItem(Candidate));
+        }
+    };
 
     return (
         <div>
@@ -55,7 +74,8 @@ const index = () => {
                         <p>{inputValue}</p>
                         <button onClick={inc}>+</button>
                     </div>
-                    <ButtonCart title='в корзину' active={false} />
+                    {/* <button onClick={addToCart}>ADD</button> */}
+                    <ButtonCart title='в корзину' active={false} funcActive={addToCart}/>
                     <div className={styles.wrapperVariables}>
                         {data.variables && data.variables.map((item: any, id: number) => {
                             return (

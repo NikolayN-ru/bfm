@@ -9,7 +9,7 @@ interface IButtonCart {
 
 const ButtonCart: FC<IButtonCart> = ({ title = "ButtonCart", active = true, funcActive }): JSX.Element => {
     return (
-        <button className={styles.btn} disabled={active}>{title}</button>
+        <button className={styles.btn} disabled={active} onClick={funcActive}>{title}</button>
     )
 }
 export default ButtonCart;

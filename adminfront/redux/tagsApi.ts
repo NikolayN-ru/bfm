@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const tagsApi = createApi({
+export const tagsApi:any = createApi({
     reducerPath: 'tagsApi',
     tagTypes: ['Tags'],
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4200/api/yarn/tag/' }),

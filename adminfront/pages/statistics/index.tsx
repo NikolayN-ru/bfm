@@ -4,7 +4,7 @@ import { useGetCategoryAllQuery } from "../../redux/CategoryApi";
 
 const index = () => {
 
-    const { data = [], isLoading } = useGetCategoryAllQuery('1');
+    const { data = [], isLoading } = useGetCategoryAllQuery<any>('1');
     const [count, setCount] = useState<number>(0);
     const [obj, setObject] = useState<any>([]);
 
