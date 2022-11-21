@@ -1,6 +1,12 @@
 ---
 version: '3.8'
 services:
+  rmq:
+    image: rabbitmq:3-management
+    restart: always
+    ports:
+      - "15672:15672"
+      - "5672:5672"
   # frontend:
   #   build: ./frontend
   #   container_name: frontend-ReactJs
@@ -47,14 +53,14 @@ services:
   #     - POSTGRES_USER=postgres
   #     - POSTGRES_PASSWORD=password
 
-  mongo:
-    image: mongo:4.4.4
-    container_name: mongo
-    restart: always
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=admin
-    ports:
-      - 27017:27017
-    volumes:
-      - ./mongo-data-4.4:/data/db
+  # mongo:
+  #   image: mongo:4.4.4
+  #   container_name: mongo
+  #   restart: always
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=admin
+  #     - MONGO_INITDB_ROOT_PASSWORD=admin
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - ./mongo-data-4.4:/data/db
