@@ -123,7 +123,9 @@ export class YarnService {
         return yarnItem._id;
     }
 
-    async updateYarnItem(_id: string, dto: YarnDto): Promise<any> {
+    // async updateYarnItem(_id: string, dto: YarnDto): Promise<any> {
+    async updateYarnItem(dto: any): Promise<any> {
+        const { _id } = dto;
         const updateYarnItem = await this.yarnModel.findByIdAndUpdate(_id, dto, {
             new: true
         }).exec();

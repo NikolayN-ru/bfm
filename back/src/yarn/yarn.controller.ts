@@ -74,10 +74,14 @@ export class YarnController {
         return this.yarnService.addYarnItem();
     }
 
-    @UsePipes(new ValidationPipe())
-    @Put('new/:id')
-    async updateYarn(@Param('id') id: string, @Body() dto: YarnDto): Promise<any> {
-        return this.yarnService.updateYarnItem(id, dto);
+    // @UsePipes(new ValidationPipe())
+    // @Put('new/:id')
+    @Put('new')
+    // async updateYarn(@Param('id') id: string, @Body() dto: YarnDto): Promise<any> {
+    async updateYarn(@Body() dto: any): Promise<any> {
+        // return this.yarnService.updateYarnItem(id, dto);
+        // console.log(dto, 'dto')
+        return this.yarnService.updateYarnItem(dto);
     }
 
     @Get('all')

@@ -3,8 +3,10 @@ import styles from './Menu.module.scss';
 
 const items = [
     { title: 'статистика', link: '/statistics', },
-    { title: 'продукты', link: '/products', },
     { title: 'заказы', link: '/orders', },
+    { title: 'пряжа', link: '/products', },
+    { title: 'спицы', link: '/products', },
+    { title: 'изделия', link: '/products', },
     { title: 'вариации', link: '/variables', },
 ]
 

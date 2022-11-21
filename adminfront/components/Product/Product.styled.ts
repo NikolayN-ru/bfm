@@ -14,7 +14,7 @@ export const WrapperProduct = styled.div`
     font-size: 15px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    /* gap: 20px; */
   }
 `
 
@@ -45,9 +45,10 @@ export const TextAreaInput = styled.textarea`
 `
 export const WrapperVariables = styled.div`
   & {
-    margin-top: 30px;
+    margin-top: 3px;
     display: flex;
     gap: 20px;
+    align-items: center;
   }
 `
 
@@ -55,7 +56,7 @@ export const InputVariable = styled.input`
   & {
     width: 60px;
     border-radius: 20%;
-    height: 60px;
+    height: 40px;
     border: 2px solid #d1ced6;
     padding-left: 10px;
     /* align-items: center; */
@@ -90,4 +91,14 @@ export const SaveButton = styled.button `
     height: 40px;
     background-color: green;
     border: none;
-}`
+    margin-bottom: 20px;
+}
+&:hover {
+  opacity: 0.7;
+}
+&:active {
+  background-color: tomato;
+  opacity: 1;
+
+}
+`

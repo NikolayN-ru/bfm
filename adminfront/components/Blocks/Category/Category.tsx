@@ -3,8 +3,7 @@ import styles from './Category.module.scss'
 
 const Category = () => {
   const { data = [], isLoading } = useGetCategoryAllQuery('1')
-
-  console.log(data, 'data')
+  // console.log(data, 'data')
 
   return (
     <div className={styles.wrapper}>
