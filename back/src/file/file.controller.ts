@@ -23,7 +23,8 @@ export class FileController {
 
     @Post('delete')
     @HttpCode(200)
-    async removeFile(@Body('fileData') file: string){
+    async removeFile(@Body('file') file: string){
+        console.log(file, 'file')
         return this.fileService.removeFile(file);
     }
 }

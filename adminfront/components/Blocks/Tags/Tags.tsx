@@ -26,7 +26,6 @@ const Tags: FC = () => {
 
     const createTag = async () => {
         await addTag({}).unwrap();
-
     }
 
     const addDescriptionTag = async (id: any) => {
