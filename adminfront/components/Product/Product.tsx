@@ -40,7 +40,7 @@ const Product: FC<any> = ({ id }) => {
 
   const changeValue = (e: any, field: string) => {
     setState((prev: any) => {
-      const newState = { ...prev, [field]: e.target.value }
+      const newState = { ...prev, [field]: Number(e.target.value.trim()) }
       return newState
     })
   }
@@ -60,16 +60,19 @@ const Product: FC<any> = ({ id }) => {
 
   const removeVariable = (index: number) => {
     setState((prev: any) => {
-    const candidate = prev.variables.filter((_: any, i: number) => i === index)
-    console.log(candidate[0].image);
-      axios.post(`http://localhost:4200/api/files/delete`, {
-        "file": candidate[0].image
-      })
-      .then(res => {
-      //  console.log(`Success` + res.data);
+      const candidate = prev.variables.filter(
+        (_: any, i: number) => i === index
+      )
+      console.log(candidate[0].image)
+      axios
+        .post(`http://localhost:4200/api/files/delete`, {
+          file: candidate[0].image,
         })
-        .catch(err => {
-            console.log(err);
+        .then((res) => {
+          //  console.log(`Success` + res.data);
+        })
+        .catch((err) => {
+          console.log(err)
         })
       const newState = {
         ...prev,
@@ -79,16 +82,15 @@ const Product: FC<any> = ({ id }) => {
     })
   }
 
-
   const changeProp = (e: any, id: number, prop: string) => {
+    console.log(state, 'STATE!')
     setState((prev: any) => {
-      // console.log(state, 'STATE!')
       const newState = {
         ...state,
         variables: state.variables.map((_: any, i: number) => {
           if (i === id) {
             // console.log(_, 'color!', e.target.value)
-            _ = { ..._, [prop]: e.target.value, number: e.target.value }
+            _ = { ..._, [prop]: Number(e.target.value), number: e.target.value }
           }
           return _
         }),
@@ -114,7 +116,7 @@ const Product: FC<any> = ({ id }) => {
     // console.log(state, 'stateNEW')
   }
 
-  const addImageProp = (id:number, fileUrl:string) => {
+  const addImageProp = (id: number, fileUrl: string) => {
     setState((prev: any) => {
       // console.log(state, 'STATE!')
       const newState = {
@@ -127,23 +129,24 @@ const Product: FC<any> = ({ id }) => {
           return _
         }),
       }
-      // console.log(newState, 'newState')
       return newState
     })
   }
 
-  const changeMainPhoto = (url:string) => {
-    // console.log(state.mainPhoto,'state.mainPhoto')
+  const changeMainPhoto = (url: string) => {
     setState((prev: any) => {
       return {
-       ...prev,
-       image:url,
+        ...prev,
+        image: url,
       }
     })
   }
-   //todo
-  const toggleTag = (id:any) => {
-    console.log(id, 'toggleTags - ID')
+  //todo
+  const toggleTag = (tags: string[]) => {
+    // console.log(id, 'toggleTags - ID')
+    setState((prev: any) => {
+      return { ...prev, tags: tags }
+    })
   }
 
   // if (isLoading || !state.name) {
@@ -159,20 +162,21 @@ const Product: FC<any> = ({ id }) => {
       <div style={{ width: "300px" }}>
         <SaveButton onClick={changeFunc}>Сохранить</SaveButton>
         <MainImg src={BASE_URL + state.image} alt="" />
-        <ButtonOk title="сменить главную картинку" okFunc={() => {}} />
         {/* <input type="checkbox" value={checked} onChange={toggle} /> */}
-        {/* <h3>{data?.name}</h3> */}
         <div>
           <hr />
-          //todo
-          <TagsProduct const toggleTag={toggleTag}/>
+
+          <TagsProduct const toggleTag={toggleTag} />
           <hr />
-          <button>SAVE - TAGS</button>
           <p>теги:</p>
           {state.tags?.map((tag: any, id: number) => {
             return (
               <WrapperTags>
-                <ButtonTag>{tag.title}</ButtonTag>
+                {tag.title ? (
+                  <span>{tag.title}</span>
+                ) : (
+                  <span>сохраните изменения</span>
+                )}
               </WrapperTags>
             )
           })}
@@ -230,7 +234,6 @@ const Product: FC<any> = ({ id }) => {
           value={state.description}
           onChange={(e) => changeValue(e, "description")}
         />
-        
       </div>
       <WrapperProduct>
         <div>
@@ -247,33 +250,38 @@ const Product: FC<any> = ({ id }) => {
                 <InputVariable
                   value={item.color || 0}
                   onChange={(e) => changeProp(e, id, "color")}
-                  />
+                />
                 <InputVariable
                   value={item.count}
                   onChange={(e) => changeProp(e, id, "count")}
-                  />
+                />
                 {item.image ? (
                   <img src={BASE_URL + item.image} width="40" />
-                  ) : (
-                    <div>
-                    <Upload 
-                    filePath={`${state.category[0].title}_${state.name}`}
-                    addImageProp={addImageProp}
-                    id={id}
+                ) : (
+                  <div>
+                    <Upload
+                      filePath={`${state.category[0].title}_${state.name}`}
+                      addImageProp={addImageProp}
+                      id={id}
                     />
+
                     {/* <input type="file" /> */}
                   </div>
                 )}
                 <ButtonOff
                   title="удалить варриацию"
                   delFunc={() => removeVariable(id)}
-                  />
-                  <button onClick={()=>changeMainPhoto(item.image)}>*</button>
+                />
+                <button onClick={() => changeMainPhoto(item.image)}>*</button>
               </WrapperVariables>
             )
           })}
           <hr />
-          <ButtonOk title="добавить вариацию" okFunc={addVariable} />
+          {state.category?.length ? (
+            <ButtonOk title="добавить вариацию" okFunc={addVariable} />
+          ) : (
+            <p>выберете фирму товара и сохраните ее</p>
+          )}
         </div>
       </WrapperProduct>
     </MainWrap>

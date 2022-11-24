@@ -20,7 +20,7 @@ const setLocalCategory = (e:any) => {
     <div>
       <label for="category-select">выберете категорию: </label>
       <select name="pets" id="category-select"  onChange={(e:any)=>setLocalCategory(e.target.value)}>
-        <option value="">-- выбери опции ! --</option>
+        <option value="">-- выберите категорию --</option>
         {/* {variables.map((item) => (
           <option value="dog">{item}</option>
         ))} */}

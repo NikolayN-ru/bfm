@@ -10,8 +10,10 @@ const ItemProduct: FC<any> = ({ id, image, name, price }) => {
     return (
         <Link href={linkPath}>
             <div className={styles.wrapper}>
-                {/* <Image src={`${path}${image}`} alt={name} width='200' height='200' /> */}
                 <img src={`${path}${image}`} alt="" width='150' />
+                {/* <p>{image}</p> */}
+                {/* {console.log(image)} */}
+                {/* <Image src={`${image}`} alt={'yarn'} width='150' height='300'/> */}
                 <div>
                     <p>{name}</p>
                     <p>{price} P.</p>

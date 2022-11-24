@@ -1,11 +1,8 @@
 import Menu from "../../components/Menu/Menu"
+import Orders from "../../components/Orders/Orders"
+import { useGetOrderAllQuery } from "../../redux/OrderApi"
 
 const index = () => {
-    return (
-        <div>
-            {/* <Menu /> */}
-            Orders
-        </div>
-    )
+  return <Orders />
 }
-export default index;
+export default index

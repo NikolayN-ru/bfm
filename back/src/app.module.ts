@@ -13,6 +13,7 @@ import { YarnModule } from './yarn/yarn.module';
 import { MovieModule } from './movie/movie.module';
 import { RatingModule } from './rating/rating.module';
 import { TelegramModule } from './telegram/telegram.module';
+import { OrderModule } from './order/order.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { TelegramModule } from './telegram/telegram.module';
     MovieModule,
     RatingModule,
     TelegramModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
