@@ -4,7 +4,7 @@ import OrderItem from "./OrderItem/OrderItem"
 
 const Orders: FC = () => {
   const { data = [], isLoading } = useGetOrderAllQuery<any>("1")
-  console.log(data, "data")
+  // console.log(data, "data")
 
   if (isLoading) {
     return <div>Loading...</div>

@@ -34,7 +34,7 @@ const CatrSvg = () => {
 const MainMenu = () => {
   const countProduct = useSelector((state: any) => state.cart.cart);
   const { data, isLoading } = useGetCategoryQuery("all");
-  console.log(data, "data");
+  // console.log(data, "data");
   return (
     <div className={styles.menu}>
       <div className={styles.main}>
@@ -43,8 +43,8 @@ const MainMenu = () => {
           <div className={styles.category}>
             {data && data.map((item: any, id: string) => {
               return (
-                <p className={styles.categoryItem}>
-                  <Link href={"/category/" + item._id} key={id}>
+                <p className={styles.categoryItem} key={id}>
+                  <Link href={"/category/" + item._id} >
                     {item.title}
                   </Link>
                 </p>

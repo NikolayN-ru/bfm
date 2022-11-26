@@ -1,11 +1,44 @@
 .wrapper {
   width: 1000px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   gap: 10px;
 
-  .wrapInput {
+  .left,
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .right {
+    gap :0;
+  }
+
+  .right {
+    input {
+      width: 20px;
+      height: 20px;
+    }
+    .inputBlock {
+      fieldset {
+        padding: 0;
+        margin: 0;
+        border: none;
+      }
+      width: 250px;
+      margin-left: 100px;
+      margin-bottom: 30px;
+      p,
+      span {
+        margin-left: 10px;
+        color: rgb(45, 47, 131);
+      }
+    }
+  }
+
+  .wrapInput,
+  .wrapInputComment {
     width: 500px;
     display: flex;
     gap: 20px;
@@ -16,12 +49,36 @@
       color: rgb(45, 47, 131);
     }
   }
+  .wrapInputComment {
+    // height: 100px;
+    flex-direction: column;
+    textarea {
+      width: 300px;
+      // text-align: start;
+      height: 100px;
+      padding: 10px;
+      color: rgb(45, 47, 131);
+    }
+  }
+
+  .wrapTotal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      color: rgb(45, 47, 131);
+    }
+  }
 
   input {
     width: 300px;
-    height: 50px;
-    color: rgb(45, 47, 131);
+    height: 40px;
+    color: rgb(55, 57, 156);
     font-size: 20px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 100;
   }
 
   button {
@@ -30,5 +87,19 @@
     height: 50px;
     color: rgb(45, 47, 131);
     font-size: 20px;
+  }
+
+  .btn {
+    border: none;
+    background-color: rgb(49, 141, 221);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding-left: 0;
+    margin-left: 0;
+  }
+  .btn:hover {
+    background-color: rgb(31, 85, 133);
+    scale: 1.1;
   }
 }

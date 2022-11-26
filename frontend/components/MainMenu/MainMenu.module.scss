@@ -33,7 +33,6 @@
 .cart {
   padding-left: 80px;
   padding-top: 10px;
-
   position: relative;
 
   .count {
@@ -79,15 +78,10 @@
   top: 60px;
   left: 0;
   width: 160px;
-  // height: 200px;
   background-color: #33417a;
 }
-// .category:hover {
-//   opacity: 1;
-//   display: block;
-// }
 
 .categoryItem:hover {
-  opacity: .8;
+  opacity: 0.8;
   background-color: #475aa7;
 }

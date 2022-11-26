@@ -7,7 +7,7 @@ const index: FC = (): JSX.Element => {
   const { id } = router.query
 
   const { data = [], isLoading } = useGetOrderQuery(id)
-  console.log(data, "data")
+  // console.log(data, "data")
   if (isLoading) {
     return <>LOADING</>
   }

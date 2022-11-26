@@ -13,7 +13,7 @@ const index = () => {
   const { data = [], isLoading } = useGetProductQuery(router.query.id);
   const path = "http://localhost:4200";
   const dispatch = useDispatch();
-  console.log(data, "data");
+  // console.log(data, "data");
   const [variables, setVariables] = useState<any>([]);
   const [inputValue, setInputValue] = useState<number>(0);
 
@@ -99,14 +99,16 @@ const index = () => {
                 return item.number === variables.number ? (
                   <div className={styles.border} key={id}>
                     <Variables
-                      title={item.number}
+                      // title={item.number}
+                      title={item.color}
                       funcActive={() => setVariable(item)}
                     />
                   </div>
                 ) : (
                   <Variables
                     key={id}
-                    title={item.number}
+                    // title={item.number}
+                    title={item.color}
                     funcActive={() => setVariable(item)}
                   />
                 );
