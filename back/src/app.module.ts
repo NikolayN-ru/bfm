@@ -14,6 +14,7 @@ import { MovieModule } from './movie/movie.module';
 import { RatingModule } from './rating/rating.module';
 import { TelegramModule } from './telegram/telegram.module';
 import { OrderModule } from './order/order.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { OrderModule } from './order/order.module';
     RatingModule,
     TelegramModule,
     OrderModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],
