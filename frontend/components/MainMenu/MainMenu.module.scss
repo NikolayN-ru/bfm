@@ -1,39 +1,93 @@
 .menu {
-    margin: 0 auto;
-    padding: 30px;
-    display: flex;
+  margin: 0 auto;
+  padding: 30px;
+  display: flex;
+  gap: 1px;
 }
 
 .item {
-    cursor: pointer;
-    padding: 20px;
-    background-color: rgb(118, 85, 165);
-    color: rgb(216, 216, 216);
+  cursor: pointer;
+  padding: 20px;
+  background: linear-gradient(180deg, #8f74c5 0%, #5622b7 100%), #c4c4c4;
+  color: #fff;
+  transition: all 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0);
 }
 
 .item:hover {
-    background-color: rgb(95, 67, 133);
-    color: white;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.15)
+    ),
+    linear-gradient(180deg, #475aa7 0%, #47129c 100%), #c4c4c4;
+  color: white;
+  scale: 1.1;
+  border: 1px solid rgba(255, 255, 255);
+}
+.item:active {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)),
+    linear-gradient(180deg, #33417a 0%, #3b227f 100%), #c4c4c4;
 }
 
 .cart {
-    padding-left: 80px;
-    padding-top: 10px;
-    // margin: 20px;
-    position: relative;
+  padding-left: 80px;
+  padding-top: 10px;
 
-    .count {
-        position: absolute;
-        top: 5px;
-        right: -5px;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background-color: rgb(246, 219, 12);
-        padding-left: 5px;
-    }
+  position: relative;
+
+  .count {
+    position: absolute;
+    top: 5px;
+    right: -5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #8ec11e;
+    padding-left: 5px;
+    z-index: 10;
+    color: #fff;
+  }
 }
 
-.cart:hover {
-    opacity: 0.7;
+.cartMain {
+  transition: all 0.3s;
+}
+
+.cartMain:hover {
+  scale: 1.2;
+  border-radius: 43%;
+  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.4);
+}
+
+.main {
+  position: relative;
+  z-index: 999;
+}
+.main:hover {
+  .category {
+    opacity: 1;
+    display: block;
+  }
+}
+
+.category {
+  padding: 5px;
+  display: none;
+  opacity: 0;
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 160px;
+  // height: 200px;
+  background-color: #33417a;
+}
+// .category:hover {
+//   opacity: 1;
+//   display: block;
+// }
+
+.categoryItem:hover {
+  opacity: .8;
+  background-color: #475aa7;
 }

@@ -16,7 +16,13 @@ export const orderApi = createApi({
                     ]
                     : [{ type: 'Orders', _id: 'LIST' }],
         }),
+        getOrder: build.query({
+            query: (id) => `${id}`,
+            providesTags: (result: any, error, id) => [
+                { type: "Orders", _id: "LIST"},
+            ]
+        })
     })
 })
 
-export const { useGetOrderAllQuery } = orderApi;
+export const { useGetOrderAllQuery, useGetOrderQuery } = orderApi;

@@ -46,7 +46,7 @@ export class OrderModel {
     city: string;
 
     @prop()
-    address: string;
+    addres: string;
 
     @prop()
     phone: string;

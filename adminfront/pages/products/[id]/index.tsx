@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router'
-import Product from '../../../components/Product/Product'
-import { useGetProductQuery } from '../../../redux/ProductApi'
+import { useRouter } from "next/router"
+import Product from "../../../components/Product/Product"
+import { useGetOrderQuery } from "../../../redux/OrderApi"
 
 const Index = () => {
   const router = useRouter()
@@ -8,7 +8,7 @@ const Index = () => {
 
   return (
     <div>
-      <Product id={id}/>
+      <Product id={id} />
       {/* <p>Post: {id}</p> */}
     </div>
   )

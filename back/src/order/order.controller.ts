@@ -11,10 +11,10 @@ export class OrderController {
         return await this.orderService.findAll()
     }
 
-    // @Get(':id')
-    // async findById(@Param('id') id: string) {
-    //     return await this.orderService.findById(id);
-    // }
+    @Get(':id')
+    async findById(@Param('id') id: string) {
+        return await this.orderService.findById(id);
+    }
 
     @Post()
     async create(@Body() body) {

@@ -10,6 +10,7 @@ const Filter = () => {
                 <p>стоимость:</p>
                 <input type="text" placeholder='от' />
                 <input type="text" placeholder='до' />
+                <button>фильтровать по цене</button>
             </div>
             <div className={styles.compound}>
                 <p>состав:</p>

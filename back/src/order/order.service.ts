@@ -19,4 +19,8 @@ export class OrderService {
     const candidate = {...body, number: date, status: 'created'};
     return await this.orderModel.create(candidate);
   }
+
+  async findById(id: string): Promise<any> {
+    return await this.orderModel.findById(id);
+  }
 }

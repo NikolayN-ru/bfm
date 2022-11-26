@@ -56,16 +56,24 @@ export class YarnController {
         return this.yarnService.categoryAdd();
     }
 
+    @Get('category/all')
+    async categoryAllAgregate() {
+        // return this.yarnService.categoryAllAgregate();
+        return this.yarnService.categoryAllTitle();
+    }
+
+    @Get('category/:id')
+    async categoryId(@Param('id', ValidationPipe) id: string, @Body() dto: CategoryDto) {
+        return this.yarnService.categoryId(id);
+    }
+
     @Put('category/:id')
     @HttpCode(200)
     async uploadCategory(@Param('id', ValidationPipe) id: string, @Body() dto: CategoryDto) {
         return this.yarnService.categoryUpload(id, dto);
     }
 
-    @Get('category/all')
-    async categoryAllAgregate() {
-        return this.yarnService.categoryAllAgregate();
-    }
+
 
     //YarnController
     @HttpCode(200)
@@ -89,6 +97,12 @@ export class YarnController {
     async getAll(): Promise<IYarnModel[]> {
         return this.yarnService.getAll();
     }
+
+    // @Get('filter')
+    // @HttpCode(200)
+    // async getFilter(@Body() dto: any): Promise<IYarnModel[]>{
+    //     return this.yarnService.getFilter(dto);
+    // }
 
     @Get(':id')
     async getId(@Param('id') id: string): Promise<IYarnModel> {
