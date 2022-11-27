@@ -39,27 +39,32 @@ export class ProductController {
     return await this.productService.deleteCategory(id);
   }
 
-  //product
-  //   @Get('all')
-  //   async getAll(): Promise<any> {
-  //     return await this.productService.getAll();
-  //   }
+  //   product
+  @Get('all')
+  async getAll(): Promise<any> {
+    return await this.productService.getAllProduct();
+  }
 
-  //   @Get(':id')
-  //   async get(@Param('id') id: number): Promise<any> {
-  //     return await this.productService.get(id);
-  //   }
+  @Post()
+  async create(@Body() categoryProd: any): Promise<any> {
+    return await this.productService.createProduct(categoryProd);
+  }
 
-  //   @Post()
-  //   async create(@Body() categoryProd: any): Promise<any> {
-  //     return await this.productService.create(categoryProd);
-  //   }
+  @Get(':id')
+  async get(@Param('id') id: number): Promise<any> {
+    return await this.productService.getProduct(id);
+  }
 
-  //   @Put(':id')
-  //   async update(
-  //     @Param('id') id: number,
-  //     @Body() categoryProd: any,
-  //   ): Promise<any> {
-  //     return await this.productService.update(id, categoryProd);
-  //   }
+  @Put(':id')
+  async update(
+    @Param('id') id: number,
+    @Body() categoryProd: any,
+  ): Promise<any> {
+    return await this.productService.updateProduct(id, categoryProd);
+  }
+
+  @Delete(':id')
+  async delete(@Param('id') id: number): Promise<any> {
+    return await this.productService.deleteProduct(id);
+  }
 }

@@ -8,7 +8,7 @@ const Index = () => {
 
   return (
     <div>
-      <Product id={id} />
+        warres - id -- {id}
     </div>
   )
 }

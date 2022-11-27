@@ -5,8 +5,8 @@ const items = [
     { title: 'статистика', link: '/statistics', },
     { title: 'заказы', link: '/orders', },
     { title: 'пряжа', link: '/products', },
-    { title: 'спицы', link: '/products', },
-    { title: 'изделия', link: '/products', },
+    { title: 'спицы', link: '/needles', },
+    { title: 'изделия', link: '/wares', },
     { title: 'вариации', link: '/variables', },
 ]
 

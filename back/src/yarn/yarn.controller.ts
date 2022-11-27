@@ -73,8 +73,6 @@ export class YarnController {
         return this.yarnService.categoryUpload(id, dto);
     }
 
-
-
     //YarnController
     @HttpCode(200)
     @Post('new')

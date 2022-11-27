@@ -269,7 +269,7 @@ const Product: FC<any> = ({ id }) => {
                   </div>
                 )}
                 <ButtonOff
-                  title="удалить варриацию"
+                  title="удалить вариацию"
                   delFunc={() => removeVariable(id)}
                 />
                 <button onClick={() => changeMainPhoto(item.image)}>*</button>
