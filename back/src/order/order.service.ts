@@ -11,16 +11,22 @@ export class OrderService {
   ) {}
 
   async findAll(): Promise<any> {
-    return await this.orderModel.find().sort({_id: -1});
+    return await this.orderModel.find().sort({ _id: -1 });
   }
 
   async create(body): Promise<any> {
-    const date = String(String(new Date()).split(' ').slice(1,5))
-    const candidate = {...body, number: date, status: 'created'};
+    const date = String(String(new Date()).split(' ').slice(1, 5));
+    const candidate = { ...body, number: date, status: 'created' };
     return await this.orderModel.create(candidate);
   }
 
   async findById(id: string): Promise<any> {
     return await this.orderModel.findById(id);
+  }
+
+  async update(id, body): Promise<any> {
+    return await this.orderModel.findByIdAndUpdate(id, body, {
+      new: true,
+    }).exec();
   }
 }

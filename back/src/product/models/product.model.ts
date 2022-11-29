@@ -15,6 +15,9 @@ export class ProductModel {
   category?: Ref<CategoryProdModel>[];
 
   @prop()
+  mainImage: string;
+
+  @prop()
   image: string[];
 
   @prop()

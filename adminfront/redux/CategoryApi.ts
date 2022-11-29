@@ -6,7 +6,8 @@ export const categoryApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:4200/api/yarn/category' }),
     endpoints: (build) => ({
         getCategoryAll: build.query({
-            query: (limit = '') => `all?${limit && `_limit=${limit}`}`,
+            // query: (limit = '') => `all?${limit && `_limit=${limit}`}`,
+            query: () => 'all',
             providesTags: (result: any) =>
                 result
                     ? [

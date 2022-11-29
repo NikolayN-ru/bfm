@@ -8,6 +8,7 @@ export const waresApi = createApi({
     //product
     getWaresAll: build.query({
       query: () => "all",
+      providesTags: (result: any, error, id) => [{ type: "Wares", id: "LIST" }],
     }),
     getWares: build.query({
       query: (id) => `${id}`,
@@ -34,7 +35,9 @@ export const waresApi = createApi({
     // category-product
     getCategoryProductAll: build.query({
       query: () => "category/all",
-      // providesTags: (result: any, error, id) => [{ type: "CategoryProduct", id: "LIST" }],
+      providesTags: (result: any, error, id) => [
+        { type: "CategoryProduct", id: "LIST" },
+      ],
     }),
   }),
 })

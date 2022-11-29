@@ -1,10 +1,11 @@
 import { useState } from "react";
 import ButtonOk from "../../components/Buttons/ButtonOK/ButtonOk"
+import { useGetCategory2Query } from "../../redux/Category2Api";
 import { useGetCategoryAllQuery } from "../../redux/CategoryApi";
 
 const index = () => {
 
-    const { data = [], isLoading } = useGetCategoryAllQuery<any>('1');
+    const { data = [], isLoading } = useGetCategory2Query();
     const [count, setCount] = useState<number>(0);
     const [obj, setObject] = useState<any>([]);
 

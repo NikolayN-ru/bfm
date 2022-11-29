@@ -25,6 +25,7 @@ const AddWeres: FC<any> = ({ setModal }) => {
 
   const createProduct = async () => {
     await addProduct({...state}).unwrap();
+    setModal((prev: any) => !prev)
 }
 
   if(isLoading) {

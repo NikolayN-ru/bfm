@@ -7,7 +7,7 @@ const dataMain = [
   // { title: "Пряжа", href: "/" },
   { title: "Спицы", href: "/needles" },
   { title: "Изделия", href: "/products" },
-  { title: "Блог", href: "/blog" },
+  // { title: "Блог", href: "/blog" },
   { title: "О нас", href: "/about" },
 ];
 

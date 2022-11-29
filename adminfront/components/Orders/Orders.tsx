@@ -1,22 +1,22 @@
 import { FC } from "react"
 import { useGetOrderAllQuery } from "../../redux/OrderApi"
 import OrderItem from "./OrderItem/OrderItem"
+import { OrdersWrap, Title } from "./Orders.styled"
 
 const Orders: FC = () => {
-  const { data = [], isLoading } = useGetOrderAllQuery<any>("1")
-  // console.log(data, "data")
+  const { data = [], isLoading } = useGetOrderAllQuery("1")
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <OrdersWrap>Loading...</OrdersWrap>
   }
 
   return (
-    <div>
-      <h3>Orders:</h3>
-      {data.map((item: any, id: number) => {
-        return <OrderItem key={id} item={item}/>
-      })}
-    </div>
+    <OrdersWrap>
+      <Title>страница заказов:</Title>
+      {data.map((item: any, id: number) => (
+        <OrderItem key={id} item={item} />
+      ))}
+    </OrdersWrap>
   )
 }
 export default Orders

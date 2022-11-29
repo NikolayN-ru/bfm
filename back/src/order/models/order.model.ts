@@ -62,4 +62,10 @@ export class OrderModel {
 
     @prop({default: 0})
     totalPrice: number;
+
+    @prop()
+    delivery: string;
+
+    @prop()
+    payment: string;
 }

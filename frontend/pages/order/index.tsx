@@ -10,7 +10,6 @@ const Order: FC = (): JSX.Element => {
   const [param, setParam] = useState<any>({});
 
   const cart = useSelector((state: any) => state.cart);
-  console.log(cart.cart, "cart");
 
   const changeParam = (param: string, e: any) => {
     setParam((prev: any) => {
@@ -43,6 +42,18 @@ const Order: FC = (): JSX.Element => {
       ...param,
     });
   };
+
+  const delivery = (value:string) => {
+    setParam((prev: any) => {
+      return {...prev, delivery: value };
+    });
+  }
+
+  const payment = (value:string) => {
+    setParam((prev: any) => {
+      return {...prev, payment: value };
+    });
+  }
 
   return (
     <div>
@@ -129,15 +140,15 @@ const Order: FC = (): JSX.Element => {
             <fieldset>
               <p>доставкка заказа</p>
               <div>
-                <input type="radio" name="delivery" />
+                <input type="radio" name="delivery" onChange={()=>delivery('курьер по городу')}/>
                 <span>курьер по городу</span>
               </div>
               <div>
-                <input type="radio" name="delivery" />
+                <input type="radio" name="delivery" onChange={()=>delivery('почта')}/>
                 <span>почта</span>
               </div>
               <div>
-                <input type="radio" name="delivery" />
+                <input type="radio" name="delivery" onChange={()=>delivery('сдэк')}/>
                 <span>сдэк</span>
               </div>
               </fieldset>
@@ -147,15 +158,15 @@ const Order: FC = (): JSX.Element => {
             <fieldset>
               <p>оплата заказа</p>
               <div>
-                <input type="radio" name="pay" />
+                <input type="radio" name="pay" onChange={()=>payment('на карту')}/>
                 <span>на карту</span>
               </div>
               <div>
-                <input type="radio" name="pay" />
+                <input type="radio" name="pay" onChange={()=>payment('по реквизитам')}/>
                 <span>по реквизитам</span>
               </div>
               <div>
-                <input type="radio" name="pay" />
+                <input type="radio" name="pay" onChange={()=>payment('по QR коду')}/>
                 <span>по QR коду</span>
               </div>
               </fieldset>

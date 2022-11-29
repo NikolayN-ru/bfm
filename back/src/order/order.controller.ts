@@ -21,8 +21,8 @@ export class OrderController {
         return await this.orderService.create(body);
     }
 
-    // @Put(':id')
-    // async update(@Param('id') id: string, @Body() body) {
-    //     return await this.orderService.update(id, body);
-    // }
+    @Put('')
+    async update(@Param('id') id: string, @Body() body) {
+        return await this.orderService.update(body.id, body);
+    }
 }

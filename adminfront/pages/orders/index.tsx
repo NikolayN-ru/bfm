@@ -1,8 +1,5 @@
-import Menu from "../../components/Menu/Menu"
+import { FC } from "react"
 import Orders from "../../components/Orders/Orders"
-import { useGetOrderAllQuery } from "../../redux/OrderApi"
 
-const index = () => {
-  return <Orders />
-}
+const index: FC = (): JSX.Element => <><Orders /></>
 export default index

@@ -30,6 +30,7 @@ export const tagsApi:any = createApi({
                 body
             }),
             invalidatesTags: [{ type: 'Tags', _id: 'LIST' }]
+            // invalidatesTags: (_id)=>[{ type: 'Tags', _id: 'LIST' }]
         }),
         deleteTag: build.mutation({
             query: (id) => ({
