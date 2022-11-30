@@ -1,6 +1,11 @@
 import { FC, useState } from "react"
-import { useAddProductMutation, useGetCategoryProductAllQuery } from "../../../redux/waresApi"
-import { WrapWheres } from "./addWeres.styled"
+import {
+  useAddProductMutation,
+  useGetCategoryProductAllQuery,
+} from "../../../redux/waresApi"
+import ButtonOff from "../../Buttons/ButtonOff/ButtonOff"
+import ButtonOk from "../../Buttons/ButtonOK/ButtonOk"
+import { Content, WrapCategory, WrapWheres } from "./addWeres.styled"
 
 const initialState = {
   title: "",
@@ -9,10 +14,8 @@ const initialState = {
 
 const AddWeres: FC<any> = ({ setModal }) => {
   const { data, isLoading } = useGetCategoryProductAllQuery("all")
-  const [addProduct, {isError}] = useAddProductMutation();
+  const [addProduct, { isError }] = useAddProductMutation()
   const [state, setState] = useState<any>(initialState)
-
-  console.log(state, "state")
 
   const addCategory = (id: string) => {
     setState((prev: any) => ({ ...prev, category: [id] }))
@@ -24,22 +27,25 @@ const AddWeres: FC<any> = ({ setModal }) => {
   }
 
   const createProduct = async () => {
-    await addProduct({...state}).unwrap();
+    await addProduct({ ...state }).unwrap()
     setModal((prev: any) => !prev)
-}
+  }
 
-  if(isLoading) {
+  if (isLoading) {
     return <div>loading</div>
   }
 
   return (
     <WrapWheres>
-      <button onClick={() => setModal((prev: any) => !prev)}>X</button>
-      addWeres
+      <ButtonOff
+        delFunc={() => setModal((prev: any) => !prev)}
+        title="закрыть окно"
+      />
+      <Content>создание нового продукта</Content>
       <hr />
       <div>
-        <span>title</span>
-        <input type="text" onChange={(e:any) => changeTitle(e.target.value)} />
+        <Content>введите заголовок: </Content>
+        <input type="text" onChange={(e: any) => changeTitle(e.target.value)} />
         <hr />
         {/* <select
           name="pets"
@@ -55,16 +61,17 @@ const AddWeres: FC<any> = ({ setModal }) => {
             )
           })}
         </select> */}
-        <hr />
-        <div>
+        <Content>выберете категорию: </Content>
+        <WrapCategory>
           {data.map((item: any, id: number) => {
             return (
               <button onClick={() => addCategory(item._id)}>{item.name}</button>
             )
           })}
-        </div>
+        </WrapCategory>
       </div>
-      <button onClick={createProduct}>Добавить товар</button>
+      <hr />
+      <ButtonOk okFunc={createProduct} title="Добавить товар" />
     </WrapWheres>
   )
 }

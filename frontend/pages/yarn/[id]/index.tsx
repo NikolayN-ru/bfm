@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { FC, useState } from "react";
 import ButtonCart from "../../../components/Buttons/ButtonCart/ButtonCart";
 import Layout from "../../../components/layout/Layout";
 import Variables from "../../../components/Variables/Variables";
@@ -7,14 +7,24 @@ import { useGetProductQuery } from "../../../redux/productApi";
 import styles from "./productId.module.scss";
 import { useDispatch } from "react-redux";
 import { addItem } from "../../../redux/cartReducer";
+import { back_api } from "../../../variables";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const index = () => {
+interface IVariables {
+  number: string | number;
+  color: string | number;
+  count: number;
+  image: string;
+}
+
+const index: FC = () => {
   const router = useRouter();
   const { data = [], isLoading } = useGetProductQuery(router.query.id);
-  const path = "http://localhost:4200";
+  const path = back_api;
+  // const path = process.env.BACK_API
   const dispatch = useDispatch();
-  // console.log(data, "data");
-  const [variables, setVariables] = useState<any>([]);
+  const [variables, setVariables] = useState<IVariables>();
   const [inputValue, setInputValue] = useState<number>(0);
 
   const setVariable = (item: any) => {
@@ -23,7 +33,7 @@ const index = () => {
   };
 
   const inc = () => {
-    if (variables.count > inputValue) {
+    if (variables && variables.count > inputValue) {
       setInputValue((prev) => (prev += 1));
     }
   };
@@ -33,7 +43,7 @@ const index = () => {
   };
 
   const addToCart = () => {
-    if (variables.color) {
+    if (variables && variables.color && inputValue) {
       const Candidate = {
         title: data.name,
         image: variables.image,
@@ -42,6 +52,10 @@ const index = () => {
         price: data.price,
       };
       dispatch(addItem(Candidate));
+      toast.info("вы добавили товар в корзину", {
+        className: "toast-message",
+        autoClose: 2000,
+      });
     }
   };
 
@@ -53,8 +67,9 @@ const index = () => {
     <div>
       <Layout />
       <div className={styles.wrapper}>
+        <ToastContainer />
         <div className={styles.right}>
-          {variables.image ? (
+          {variables?.image ? (
             <img src={`${path}${variables.image}`} alt="" />
           ) : (
             <img src={`${path}${data.image}`} alt="" />
@@ -87,35 +102,34 @@ const index = () => {
               })}
           </div>
           <div className={styles.price}>цена: {data.price} руб.</div>
+          <div className={styles.wrapperVariables}>
+            {data.variables &&
+              data.variables.map((item: any, id: number) => {
+                return item.number === variables?.number ? (
+                  <div className={styles.border} key={id}>
+                    <Variables
+                      title={item.color}
+                      funcActive={() => setVariable(item)}
+                    />
+                  </div>
+                ) : (
+                  <div className={styles.borderNone} key={id}>
+                    <Variables
+                      title={item.color}
+                      funcActive={() => setVariable(item)}
+                    />
+                  </div>
+                );
+              })}
+          </div>
           <div className={styles.count}>
             <button onClick={dec}>-</button>
             <p>{inputValue}</p>
             <button onClick={inc}>+</button>
           </div>
           <ButtonCart title="в корзину" active={false} funcActive={addToCart} />
-          <div className={styles.wrapperVariables}>
-            {data.variables &&
-              data.variables.map((item: any, id: number) => {
-                return item.number === variables.number ? (
-                  <div className={styles.border} key={id}>
-                    <Variables
-                      // title={item.number}
-                      title={item.color}
-                      funcActive={() => setVariable(item)}
-                    />
-                  </div>
-                ) : (
-                  <Variables
-                    key={id}
-                    // title={item.number}
-                    title={item.color}
-                    funcActive={() => setVariable(item)}
-                  />
-                );
-              })}
-          </div>
           <p className={styles.title}>
-            {variables.count && <span>кол-во мотков: {variables.count} </span>}
+            {variables?.count && <span>кол-во мотков: {variables.count} </span>}
           </p>
         </div>
       </div>

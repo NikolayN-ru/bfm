@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/layout/Layout";
@@ -8,6 +9,7 @@ import styles from "./cart.module.scss";
 import { BtnSubmit, WrapperCart } from "./cart.styled";
 
 const Cart = () => {
+
   const [total, setTotal] = useState<any>();
   const products = useSelector((state: any) => state.cart.cart);
   const dispatch = useDispatch();
@@ -44,7 +46,7 @@ const Cart = () => {
                     <span>
                       цена:<div>{item.price} руб.</div>
                     </span>
-                    <button onClick={() => dispatch(removeItem(item.title))}>
+                    <button onClick={() => dispatch(removeItem({"title": item.title, "color": item.color}))}>
                       удалить
                     </button>
                   </div>

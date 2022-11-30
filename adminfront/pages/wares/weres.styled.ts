@@ -2,6 +2,7 @@ import styled from "styled-components"
 
 export const WrapItems = styled.div`
   & {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -26,3 +27,16 @@ export const BtnNew = styled.button`
     color: #fff;
   }
 `
+
+export const H3Title = styled.h3`
+&{
+  font-weight: 300;
+  color: #461ba1;
+  margin-right: 300px;
+}`
+
+export const WrapTitle = styled.div`
+  & {
+    margin-top: 10px;
+    display: flex;
+    }`

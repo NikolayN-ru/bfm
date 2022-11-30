@@ -30,16 +30,6 @@ const OrderData:FC<any> = ({ data, id }) => {
           {/* <button onClick={changeStatus}>qwe</button> */}
           <ButtonOk title="поменять статус заказа" okFunc={changeStatus}/>
         </div>
-        <hr />
-        {data.positions &&
-          data.positions.map((item: any, id: number) => {
-            return (
-              <div>
-                {item.title} - {item.color} - {item.count}
-                <hr />
-              </div>
-            )
-          })}
       </div>
       <hr />
       <div>
@@ -88,13 +78,26 @@ const OrderData:FC<any> = ({ data, id }) => {
       </div>
       <hr />
       <div>
-        <Pcontent>опции заказа: доставка </Pcontent>
+        <Pcontent>доставка: </Pcontent>
         <Pdata>{data.delivery}</Pdata>
       </div>
       <div>
         <Pcontent>оплата: </Pcontent>
         <Pdata>{data.payment}</Pdata>
       </div>
+      <br />
+      <Pcontent>Товары: </Pcontent>
+      <Pdata>заголовок __ цвет __ количество </Pdata>
+      <hr />
+      {data.positions &&
+          data.positions.map((item: any, id: number) => {
+            return (
+              <Pdata>
+                {item.title} __ {item.color} __ {item.count}
+                <hr />
+              </Pdata>
+            )
+          })}
     </OrderItem>
     </div>
   )

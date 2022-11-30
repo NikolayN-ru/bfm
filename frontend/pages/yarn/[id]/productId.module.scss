@@ -59,6 +59,12 @@
   border-radius: 50%;
 }
 
+.borderNone {
+  border: 1px solid rgba(153, 153, 153, 0);
+  text-align: center;
+  border-radius: 50%;
+}
+
 .title {
   font-weight: 100;
 }
@@ -90,4 +96,9 @@
     padding-left: 15px;
     width: 40px;
   }
+}
+
+
+.toast-message {
+  width: 100px;
 }
