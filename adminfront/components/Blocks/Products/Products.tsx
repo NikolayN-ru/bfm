@@ -4,18 +4,17 @@ import {
 } from "../../../redux/ProductsApi"
 import ButtonOk from "../../Buttons/ButtonOK/ButtonOk"
 import ProductItem from "./ProductItem/ProductItem"
-import styles from "./Products.module.scss"
-import { SearchInput } from "./Products.styled"
+import { SearchInput, WrapperComponent } from "./Products.styled"
 
 const Products = () => {
-  const { data = [], isLoading } = useGetProductsQuery("1")
+  const { data = [], isLoading } = useGetProductsQuery(null)
   const [addProduct, { isError }] = useAddProductMutation()
 
   const createProduct = async () => {
     await addProduct({}).unwrap()
   }
   return (
-    <div className={styles.wrapper}>
+    <WrapperComponent>
       <div style={{ display: "flex", alignItems: "center", gap: "30px" }}>
         <h4>поиск по товарам</h4>
         <SearchInput type="text" />
@@ -25,7 +24,7 @@ const Products = () => {
       {data.map((item: any, id: number) => {
         return <ProductItem key={id} item={item} />
       })}
-    </div>
+    </WrapperComponent>
   )
 }
 export default Products

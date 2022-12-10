@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import { FC, useEffect, useReducer, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Layout from "../../components/layout/Layout";
 import styles from "./Order.module.scss";
@@ -39,19 +39,13 @@ const Order: FC = (): JSX.Element => {
       autoClose: 2000,
     });
     setParam((prev: any) => {
-      // return {...prev, order: products[prev.order] };
       return { ...prev, price: state, positions: [...cart.cart] };
     });
-    // axios.post('http://localhost:4200/api/telegram/', {
-    //     msg: `№00042 на сумму ${state}р.`
-    // })
     axios.post("http://localhost:4200/api/order/", {
-      //   msg: `№00042 на сумму ${state}р.`,
       ...param,
+      totalPrice: state,
     });
-    // router.push('/')
     setModal(true);
-
   };
 
   const delivery = (value: string) => {
@@ -75,7 +69,7 @@ const Order: FC = (): JSX.Element => {
         </div>
       )}
       <Layout>
-      <ToastContainer />
+        <ToastContainer />
         <div className={styles.wrapper}>
           <div className={styles.left}>
             <div className={styles.wrapInput}>

@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const orderApi = createApi({
-  reducerPath: "categoryApi",
-  tagTypes: ["Orders"],
+  reducerPath: "orderApi", // определяем текущий сервис
+  tagTypes: ["Orders", "Order"],
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4200/api/order" }),
   endpoints: (build) => ({
     getOrderAll: build.query({
@@ -15,14 +15,14 @@ export const orderApi = createApi({
                 type: "Orders" as const,
                 _id,
               })),
-              { type: "Orders", id: "LIST" },
+              { type: "Orders", _id: "LIST" },
             ]
-          : [{ type: "Orders", id: "LIST" }],
+          : [{ type: "Orders", _id: "LIST" }],
     }),
     getOrder: build.query({
       query: (id) => `${id}`,
-      providesTags: (result: any, error, id) => [
-        { type: "Orders", id: "LIST" },
+      providesTags: (result: any, error, _id) => [
+        { type: "Orders", _id: "LIST" },
       ],
     }),
     shangeOrder: build.mutation({
@@ -31,7 +31,7 @@ export const orderApi = createApi({
         method: "PUT",
         body,
       }),
-      invalidatesTags: (id) => [{ type: "Orders", id: "LIST"}],
+      invalidatesTags: (_id) => [{ type: "Orders", _id: "LIST"}],
     }),
   }),
 })

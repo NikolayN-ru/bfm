@@ -1,4 +1,13 @@
-import styled from 'styled-components'
+import styled from "styled-components"
+
+export const WrapperComponent = styled.div`
+  & {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+`
 
 export const SearchInput = styled.input`
   & {

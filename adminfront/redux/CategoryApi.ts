@@ -8,13 +8,13 @@ export const categoryApi = createApi({
         getCategoryAll: build.query({
             // query: (limit = '') => `all?${limit && `_limit=${limit}`}`,
             query: () => 'all',
-            providesTags: (result: any) =>
-                result
-                    ? [
-                        ...result.map(({ _id }: any) => ({ type: 'Categorys' as const, _id })),
-                        { type: 'Categorys', _id: 'LIST' },
-                    ]
-                    : [{ type: 'Categorys', _id: 'LIST' }],
+            // providesTags: (result: any) =>
+            //     result
+            //         ? [
+            //             ...result.map(({ _id }: any) => ({ type: 'Categorys' as const, _id })),
+            //             { type: 'Categorys', _id: 'LIST' },
+            //         ]
+            //         : [{ type: 'Categorys', _id: 'LIST' }],
         }),
     })
 })

@@ -1,9 +1,10 @@
 import { FC } from "react"
+import { useGetCategory2Query } from "../../../redux/Category2Api"
 import { useGetCategoryAllQuery } from "../../../redux/CategoryApi"
 
 const SelectLite: FC<any> = ({ setCategory }): JSX.Element => {
-    const { data=[], "isLoading":isLodingCategory } = useGetCategoryAllQuery("1")
-//   console.log(data, "data")
+    const { data=[], isLoading } = useGetCategory2Query(null)
+  console.log(data, "data")
 
 const setLocalCategory = (e:any) => {
     // const newCategory:any = []
@@ -16,9 +17,13 @@ const setLocalCategory = (e:any) => {
     })
 }
 
+if(isLoading){
+  return <>LOADING CATEGOERY</>
+}
+
   return (
     <div>
-      <label for="category-select">выберете категорию: </label>
+      <label htmlFor="category-select">выберете категорию: </label>
       <select name="pets" id="category-select"  onChange={(e:any)=>setLocalCategory(e.target.value)}>
         <option value="">-- выберите категорию --</option>
         {/* {variables.map((item) => (

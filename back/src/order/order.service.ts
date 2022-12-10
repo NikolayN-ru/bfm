@@ -6,7 +6,6 @@ import { OrderModel } from './models/order.model';
 @Injectable()
 export class OrderService {
   constructor(
-    // @InjectModel(OrderModel) private readonly orderModel: ModelType<IOrderModel>,
     @InjectModel(OrderModel) private readonly orderModel: ModelType<any>,
   ) {}
 
@@ -25,8 +24,12 @@ export class OrderService {
   }
 
   async update(id, body): Promise<any> {
-    return await this.orderModel.findByIdAndUpdate(id, body, {
-      new: true,
-    }).exec();
+    console.log(id, body); 
+    const _id = id;
+    return await this.orderModel
+      .findByIdAndUpdate(_id, body, {
+        new: true,
+      })
+      .exec();
   }
 }

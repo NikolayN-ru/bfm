@@ -12,6 +12,7 @@ import Tags from "../Blocks/Tags/Tags"
 import TagsProduct from "../Blocks/TagsProduct/TagsProduct"
 import ButtonOff from "../Buttons/ButtonOff/ButtonOff"
 import ButtonOk from "../Buttons/ButtonOK/ButtonOk"
+import AllCategory from "../GroupCategory/AllCategory"
 import DataSelect from "../Select/DataSelect/DataSelect"
 import SelectLite from "../Select/SelectLite/SelectLite"
 import Upload from "../Upload/Upload"
@@ -45,6 +46,13 @@ const Product: FC<any> = ({ id }) => {
     })
   }
 
+  const changeText = (e: any, field: string) => {
+    setState((prev: any) => {
+      const newState = {...prev, [field]: String(e.target.value.trim()) }
+      return newState
+    })
+  }
+
   const addVariable = () => {
     setState((prev: any) => {
       const newState = {
@@ -63,7 +71,7 @@ const Product: FC<any> = ({ id }) => {
       const candidate = prev.variables.filter(
         (_: any, i: number) => i === index
       )
-      console.log(candidate[0].image)
+      // console.log(candidate[0].image)
       axios
         .post(`http://localhost:4200/api/files/delete`, {
           file: candidate[0].image,
@@ -83,7 +91,7 @@ const Product: FC<any> = ({ id }) => {
   }
 
   const changeProp = (e: any, id: number, prop: string) => {
-    console.log(state, 'STATE!')
+    // console.log(state, "STATE!")
     setState((prev: any) => {
       const newState = {
         ...state,
@@ -154,9 +162,13 @@ const Product: FC<any> = ({ id }) => {
     return <WrapperProduct>LOADInG!</WrapperProduct>
   }
 
+  if (isLoading2) {
+    return <WrapperProduct>LOADInG2!</WrapperProduct>
+  }
+
   // const variableState = ["номер", "цвет", "количество", "изображение"]
   const variableState = ["цвет", "количество", "изображение"]
-
+  console.log(state)
   return (
     <MainWrap>
       <div style={{ width: "300px" }}>
@@ -165,13 +177,12 @@ const Product: FC<any> = ({ id }) => {
         {/* <input type="checkbox" value={checked} onChange={toggle} /> */}
         <div>
           <hr />
-
           <TagsProduct const toggleTag={toggleTag} />
           <hr />
           <p>теги:</p>
-          {state.tags?.map((tag: any, id: number) => {
+          {state?.tags?.map((tag: any, id: number) => {
             return (
-              <WrapperTags>
+              <WrapperTags key={id}>
                 {tag.title ? (
                   <span>{tag.title}</span>
                 ) : (
@@ -187,7 +198,7 @@ const Product: FC<any> = ({ id }) => {
           <InputField
             type="text"
             value={state.name}
-            onChange={(e) => changeValue(e, "name")}
+            onChange={(e) => changeText(e, "name")}
           />
         </div>
         <div>
@@ -195,7 +206,10 @@ const Product: FC<any> = ({ id }) => {
             фирма производитель -{" "}
             {state.category?.length ? state.category[0].title : null}
           </h4>
+          <h3>выбор категории</h3>
+          {/* <AllCategory/> */}
           <SelectLite setCategory={setCategory} />
+          <hr />
         </div>
         <div>
           цена:{" "}
@@ -210,7 +224,7 @@ const Product: FC<any> = ({ id }) => {
           <InputField
             type="text"
             value={state.country}
-            onChange={(e) => changeValue(e, "country")}
+            onChange={(e) => changeText(e, "country")}
           />
         </div>
         <div>
@@ -230,9 +244,10 @@ const Product: FC<any> = ({ id }) => {
             onChange={(e) => changeValue(e, "wieght")}
           />
         </div>
+        <p>полное описание</p>
         <TextAreaInput
           value={state.description}
-          onChange={(e) => changeValue(e, "description")}
+          onChange={(e) => changeText(e, "description")}
         />
       </div>
       <WrapperProduct>
@@ -243,7 +258,7 @@ const Product: FC<any> = ({ id }) => {
               <div key={id}>{item}</div>
             ))}
           </div>
-          {state.variables?.map((item: any, id: number) => {
+          {state?.variables?.map((item: any, id: number) => {
             return (
               <WrapperVariables key={id}>
                 {/* <InputVariable value={item.number} /> */}
@@ -277,7 +292,7 @@ const Product: FC<any> = ({ id }) => {
             )
           })}
           <hr />
-          {state.category?.length ? (
+          {state?.category?.length ? (
             <ButtonOk title="добавить вариацию" okFunc={addVariable} />
           ) : (
             <p>выберете фирму товара и сохраните ее</p>
@@ -287,4 +302,9 @@ const Product: FC<any> = ({ id }) => {
     </MainWrap>
   )
 }
+
+// const Product = () => {
+//   return <>vopa</>
+// }
+
 export default Product
