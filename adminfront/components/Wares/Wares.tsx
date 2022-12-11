@@ -32,12 +32,12 @@ const Wares: FC<any> = ({ id }) => {
   return (
     <div>
       warres - id -- {id}
-      <p>{state.title}</p>
+      <p>{state?.title}</p>
       <div>
         <input
           type="text"
           onChange={(e) => changeTitle(e)}
-        //   value={state.title}
+          //   value={state.title}
         />
       </div>
     </div>

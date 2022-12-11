@@ -5,6 +5,9 @@
 }
 
 .item {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
     padding: 20px;
     cursor: pointer;
 

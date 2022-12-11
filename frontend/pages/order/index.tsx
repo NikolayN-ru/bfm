@@ -45,6 +45,9 @@ const Order: FC = (): JSX.Element => {
       ...param,
       totalPrice: state,
     });
+    axios.post("http://localhost:4200/api/telegram/", {
+      msg: `на сумму ${state} p.`,
+    });
     setModal(true);
   };
 

@@ -9,4 +9,7 @@ export class CategoryDto {
 
     @IsString()
     description?: string;
+
+    @IsString()
+    id?: string;
 }

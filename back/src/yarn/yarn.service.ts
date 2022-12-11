@@ -73,6 +73,7 @@ export class YarnService {
   }
 
   async categoryUpload(_id: string, dto: CategoryDto) {
+    // console.log(_id, dto);
     const updateCategory = await this.categoryModel
       .findByIdAndUpdate(_id, dto, {
         new: true,
@@ -120,6 +121,10 @@ export class YarnService {
     });
     // console.log(count, 'count');
     return doc;
+  }
+
+  async deleteCateogry(id: string): Promise<any> {
+    return await this.categoryModel.findByIdAndDelete(id);
   }
 
   //YarnService

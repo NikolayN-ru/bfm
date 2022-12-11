@@ -7,6 +7,7 @@ import { productApi } from "./ProductApi"
 import { orderApi } from "./OrderApi"
 import { waresApi } from "./waresApi"
 import { category2Api } from "./Category2Api"
+import { waresCategory } from "./WaresCategory"
 
 export const store = configureStore({
   reducer: {
@@ -17,6 +18,7 @@ export const store = configureStore({
     [productApi.reducerPath]: productApi.reducer,
     [orderApi.reducerPath]: orderApi.reducer,
     [waresApi.reducerPath]: waresApi.reducer,
+    [waresCategory.reducerPath]: waresCategory.reducer,
 
   },
   middleware: (getDefaultMiddleware) =>
@@ -28,5 +30,6 @@ export const store = configureStore({
       productApi.middleware,
       orderApi.middleware,
       waresApi.middleware,
+      waresCategory.middleware,
     ),
 })

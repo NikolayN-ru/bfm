@@ -1,16 +1,15 @@
-import Category from "../../components/Blocks/Category/Category";
+import Category from "../../components/Blocks/Category/Category"
 import Tags from "../../components/Blocks/Tags/Tags"
-import Menu from "../../components/Menu/Menu"
-import styles from './Variables.module.scss';
+import CategoryWares from "../../components/CategoryWares/CategoryWares"
+import styles from "./Variables.module.scss"
 
 const Variables = () => {
-
-    return (
-        <div className={styles.wrapper}>
-            {/* <Menu /> */}
-            <Tags />
-            <Category />
-        </div>
-    )
+  return (
+    <div className={styles.wrapper}>
+      <Tags />
+      <Category />
+      <CategoryWares />
+    </div>
+  )
 }
 export default Variables

@@ -41,6 +41,7 @@ export class YarnController {
 
     @Delete('tag/:id')
     async deleteTag(@Param('id') id: string): Promise<any> {
+
         return await this.yarnService.deleteTag(id);
     }
 
@@ -64,13 +65,23 @@ export class YarnController {
 
     @Get('category/:id')
     async categoryId(@Param('id', ValidationPipe) id: string, @Body() dto: CategoryDto) {
+        // console.log(id, dto);
         return this.yarnService.categoryId(id);
     }
 
-    @Put('category/:id')
+    // @Put('category/:id')
+    @Put('category')
     @HttpCode(200)
-    async uploadCategory(@Param('id', ValidationPipe) id: string, @Body() dto: CategoryDto) {
+    // async uploadCategory(@Param('id', ValidationPipe) id: string, @Body() dto: CategoryDto) {
+    async uploadCategory(@Body() dto: CategoryDto) {
+        const id = dto.id;
+        console.log(id, dto);
         return this.yarnService.categoryUpload(id, dto);
+    }
+
+    @Delete('category/:id')
+    async deleteCategory(@Param('id') id: string): Promise<any> {
+        return await this.yarnService.deleteCateogry(id);
     }
 
     //YarnController

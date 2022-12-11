@@ -59,7 +59,7 @@ const Tags: FC = () => {
               </div>
             </div>
           ) : (
-            <div>
+            <div key={id}>
               {isLoading2 ? (
                 "UPDATE-TAG"
               ) : (
