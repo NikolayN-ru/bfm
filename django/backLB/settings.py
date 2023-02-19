@@ -13,23 +13,33 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
     "rest_framework",
+    "corsheaders",
+
     "yarn3",
     "api",
-    "corsheaders",
+    "blog.apps.BlogConfig",
 ]
 
-#NEW - любые права доступа у всех
+# NEW - любые права доступа у всех
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
     ]
 }
 
+ALLOWED_HOSTS = [
+    'backend',
+    '127.0.0.1',
+    '*',
+]
+
 CORS_ALLOWED_ORIGINS = [
     # "https://example.com",
     # "http://localhost:8080",
     "http://localhost:3000",
+    "http://77.222.63.220:3000",
     # "http://127.0.0.1:3000",
 ]
 
@@ -98,7 +108,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # STATICFILES_DIRS = [
-    # os.path.join(BASE_DIR, "static"),
+# os.path.join(BASE_DIR, "static"),
 # ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

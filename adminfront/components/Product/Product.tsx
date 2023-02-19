@@ -48,7 +48,7 @@ const Product: FC<any> = ({ id }) => {
 
   const changeText = (e: any, field: string) => {
     setState((prev: any) => {
-      const newState = {...prev, [field]: String(e.target.value.trim()) }
+      const newState = { ...prev, [field]: String(e.target.value.trim()) }
       return newState
     })
   }
@@ -71,7 +71,6 @@ const Product: FC<any> = ({ id }) => {
       const candidate = prev.variables.filter(
         (_: any, i: number) => i === index
       )
-      // console.log(candidate[0].image)
       axios
         .post(`http://localhost:4200/api/files/delete`, {
           file: candidate[0].image,

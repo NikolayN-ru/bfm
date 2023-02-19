@@ -41,13 +41,13 @@ const Order: FC = (): JSX.Element => {
     setParam((prev: any) => {
       return { ...prev, price: state, positions: [...cart.cart] };
     });
-    axios.post("http://localhost:4200/api/order/", {
-      ...param,
-      totalPrice: state,
-    });
-    axios.post("http://localhost:4200/api/telegram/", {
-      msg: `на сумму ${state} p.`,
-    });
+    // axios.post("http://localhost:4200/api/order/", {
+    //   ...param,
+    //   totalPrice: state,
+    // });
+    // axios.post("http://localhost:4200/api/telegram/", {
+    //   msg: `на сумму ${state} p.`,
+    // });
     setModal(true);
   };
 

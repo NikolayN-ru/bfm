@@ -9,10 +9,8 @@
   margin: 0;
   box-sizing: border-box;
   transition: all 0.3s;
-  opacity: 0.85;
+  opacity: 0.84;
   p {
-    margin: 5px;
-    padding: 5px;
     color: rgb(80, 48, 104);
   }
 
@@ -22,7 +20,7 @@
   .description {
     text-align: center;
     .category {
-      font-size: 12px;
+      font-size: 14px;
       font-weight: 200;
     }
     h3 {

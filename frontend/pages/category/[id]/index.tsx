@@ -5,9 +5,15 @@ import Layout from "../../../components/layout/Layout";
 import { useGetCategoryItemQuery } from "../../../redux/categoryApi";
 import styles from "./categoryItem.module.scss";
 
-const index: FC = () => {
+const index: FC = (): JSX.Element => {
   const router = useRouter();
   const { data = [], isLoading } = useGetCategoryItemQuery(router.query.id);
+  console.log(data[0], "data");
+
+  if (isLoading) {
+    return <>"LOADING "</>;
+  }
+
   return (
     <div className={styles.container}>
       <div>
@@ -15,8 +21,8 @@ const index: FC = () => {
           <Layout>
             {/* <Filter /> */}
             <div className={styles.items}>
-              {data[0] &&
-                data[0].YarnItem.map((item: any, id: number) => (
+              {data &&
+                data.map((item: any, id: number) => (
                   <ItemProduct key={id} item={item} />
                 ))}
             </div>

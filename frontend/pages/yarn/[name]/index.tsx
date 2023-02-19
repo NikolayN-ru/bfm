@@ -3,17 +3,13 @@ import { FC, useState } from "react";
 import ButtonCart from "../../../components/Buttons/ButtonCart/ButtonCart";
 import Layout from "../../../components/layout/Layout";
 import Variables from "../../../components/Variables/Variables";
-import {
-  useGetProductMainQuery,
-  useGetProductQuery,
-} from "../../../redux/productApi";
+import { useGetProductQuery } from "../../../redux/productApi";
 import styles from "./productId.module.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addItem } from "../../../redux/cartReducer";
 import { back_api } from "../../../variables";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios";
 import MainInfoProduct from "../../../components/MainInfoProduct/MainInfoProduct";
 
 interface IVariables {
@@ -21,28 +17,25 @@ interface IVariables {
   color: string | number;
   count: number;
   image: string;
+  name?: string;
 }
 
 const index: FC = () => {
   const router = useRouter();
   const { data = [], isLoading } = useGetProductQuery(router.query.name);
 
-  // const getTodos = () => {
-  //   axios
-  //     .get(`http://127.0.0.1:8000/api/variables/${router.query.name}`)
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     });
-  // };
-  // getTodos();
-
   const dispatch = useDispatch();
   const [variables, setVariables] = useState<IVariables>();
   const [inputValue, setInputValue] = useState<number>(0);
   const [mainDesc, setMainDesc] = useState<any>({});
+  // const product = useSelector((state: any) => state.mainProduct.productMain);
+  // console.log(product, "product");
 
   const setVariable = (item: any) => {
-    setVariables(item);
+    setVariables({
+      ...item,
+      number: Number(item.color),
+    });
     setInputValue(0);
   };
 
@@ -89,14 +82,11 @@ const index: FC = () => {
           )}
         </div>
         <div className={styles.left}>
-          {
-            isLoading ? null : 
-          <MainInfoProduct setMainDesc={setMainDesc} />
-          }
+          {isLoading ? null : <MainInfoProduct setMainDesc={setMainDesc} />}
           <div className={styles.wrapperVariables}>
             {data &&
               data.map((item: any, id: number) => {
-                return item.number === variables?.number ? (
+                return Number(item.color) === variables?.number ? (
                   <div className={styles.border} key={id}>
                     <Variables
                       title={item.color}
@@ -113,19 +103,29 @@ const index: FC = () => {
                 );
               })}
           </div>
-          <div className={styles.count}>
-            <button onClick={dec}>-</button>
-            <p>{inputValue}</p>
-            <button onClick={inc}>+</button>
-          </div>
-          <ButtonCart title="в корзину" active={false} funcActive={addToCart} />
+          {variables?.name ? (
+            <>
+              <div className={styles.count}>
+                <button onClick={dec}>-</button>
+                <p>{inputValue}</p>
+                <button onClick={inc}>+</button>
+              </div>
+              <ButtonCart
+                title="в корзину"
+                active={false}
+                funcActive={addToCart}
+              />
+            </>
+          ) : (
+            "Выбери опции !"
+          )}
           <p className={styles.title}>
             {variables?.count && <span>кол-во мотков: {variables.count} </span>}
           </p>
         </div>
       </div>
       <div className={styles.under}>
-        <p>описание: {data.description}</p>
+        <p>описание: {mainDesc.description}</p>
       </div>
     </div>
   );

@@ -1,14 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { back_api } from "../variables";
 
 export const categoryApi = createApi({
   reducerPath: "categoryApi",
   tagTypes: ["Category"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4200/api/yarn/category",
+    baseUrl: `${back_api}/api/category`,
   }),
   endpoints: (build) => ({
     getCategory: build.query({
-      query: () => "all",
+      query: () => "",
     }),
     getCategoryItem: build.query({
       query: (id) => `/${id}`,
