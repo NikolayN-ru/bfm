@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Layout from "../../components/layout/Layout";
 import { removeItem } from "../../redux/cartReducer";
+import { back_api } from "../../variables";
 
 import styles from "./cart.module.scss";
 import { BtnSubmit, WrapperCart } from "./cart.styled";
@@ -36,7 +37,7 @@ const Cart = () => {
                 return (
                   <div key={id} className={styles.item}>
                     <span>{item.title}</span>
-                    <img src={`http://localhost:4200${item.image}`} alt="" />
+                    <img src={`${back_api}${item.image}`} alt="" />
                     <span>
                       цвет:<div>{item.color}</div>
                     </span>

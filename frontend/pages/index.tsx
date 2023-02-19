@@ -9,6 +9,13 @@ import styles from './main.module.scss';
 
 const HomePage = () => {
   const {data, isLoading} = useGetProductsQuery('all');
+// console.log(data, 'data')
+  // const getTodos = () => {
+  //   axios.get("http://127.0.0.1:8000/api/product").then((res) => {
+  //     console.log(res.data);
+  //   });
+  // };
+  // getTodos()
 
   if(isLoading){
     return (
