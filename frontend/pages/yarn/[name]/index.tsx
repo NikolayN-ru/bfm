@@ -80,6 +80,18 @@ const index: FC = () => {
           ) : (
             <img src={`${back_api}${mainDesc.image}`} alt="" />
           )}
+
+          <div className={styles.variablePhoto}>
+            <button className={styles.variableItem}>
+              <img src={`${back_api}${mainDesc.imageMain2}`} alt="" />
+            </button>
+            <button className={styles.variableItem}>
+              <img src={`${back_api}${mainDesc.imageMain3}`} alt="" />
+            </button>
+            <button className={styles.variableItem}>
+              <img src={`${back_api}${mainDesc.imageMain4}`} alt="" />
+            </button>
+          </div>
         </div>
         <div className={styles.left}>
           {isLoading ? null : <MainInfoProduct setMainDesc={setMainDesc} />}

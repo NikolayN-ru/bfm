@@ -7,6 +7,7 @@ const dataMain = [
   // { title: "Пряжа", href: "/" },
   { title: "Спицы", href: "/needles" },
   { title: "Изделия", href: "/products" },
+  { title: "Мастер классы", href: "/mk" },
   { title: "Блог", href: "/blog" },
   { title: "О нас", href: "/about" },
 ];
@@ -33,28 +34,21 @@ const CatrSvg = () => {
 
 const MainMenu = () => {
   const countProduct = useSelector((state: any) => state.cart.cart);
-  const { data, isLoading } = useGetCategoryQuery("all");
   return (
     <div className={styles.menu}>
       <div className={styles.main}>
-        <div className={styles.item}>
-          <Link href={"/"}>{"Пряжа"}</Link>
-          <div className={styles.category}>
-            {data &&
-              data.map((item: any, id: string) => {
-                return (
-                  <p className={styles.categoryItem} key={id}>
-                    <Link href={"/category/" + item.id}>{item.title}</Link>
-                  </p>
-                );
-              })}
+        <Link href={"/"}>
+          <div className={styles.item}>
+            {"Пряжа"}
+            {/* <div className={styles.category}>
+          </div> */}
           </div>
-        </div>
+        </Link>
       </div>
       {dataMain.map(({ title, href }: any, id: number) => (
-        <div key={id} className={styles.item}>
-          <Link href={href}>{title}</Link>
-        </div>
+        <Link href={href} key={id}>
+          <div className={styles.item}>{title}</div>
+        </Link>
       ))}
       <div className={styles.cart}>
         {countProduct.length ? (

@@ -37,8 +37,22 @@ class Yarn(models.Model):
         max_length=255, verbose_name='рекомендуемые спицы')
     description = models.TextField(verbose_name='большой описание')
     price = models.FloatField(verbose_name='цена')
+    purchasePrice = models.FloatField(
+        blank=True, null=True, verbose_name='закупочная цена')
+    discount = models.FloatField(
+        blank=True, null=True, default=0, verbose_name='скидка в рублях')
+    discountPercentage = models.FloatField(
+        blank=True, null=True, default=0, verbose_name='скидка в процентах')
+    barcode = models.IntegerField(
+        blank=True, null=True, verbose_name='штрихкод')
     image = models.ImageField(
-        upload_to='uploads', blank=True, null=True, verbose_name='изображение')
+        upload_to='uploads', blank=True, null=True, verbose_name='изображение-1')
+    imageMain2 = models.ImageField(
+        upload_to='uploads', blank=True, null=True, verbose_name='изображение-2')
+    imageMain3 = models.ImageField(
+        upload_to='uploads', blank=True, null=True, verbose_name='изображение-3')
+    imageMain4 = models.ImageField(
+        upload_to='uploads', blank=True, null=True, verbose_name='изображение-4')
     # variables = models.ForeignKey(
 # "VariablesYarn", on_delete=models.DO_NOTHING, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -52,15 +66,15 @@ class Yarn(models.Model):
 
 
 class VariablesYarn(models.Model):
+    productMain = models.ForeignKey(
+        Yarn, on_delete=models.SET_NULL, blank=True, null=True)
     name = models.CharField(max_length=255, blank=True, null=True, default='')
-    color = models.CharField(max_length=255, verbose_name='номер цвета')
+    color = models.IntegerField(verbose_name='номер цвета')
     count = models.IntegerField(verbose_name='кол-во штук')
     image = models.ImageField(
         upload_to='uploads/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    productMain = models.ForeignKey(
-        Yarn, on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "Номер цвета"

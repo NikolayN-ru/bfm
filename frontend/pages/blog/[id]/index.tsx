@@ -10,8 +10,10 @@ import styles from "./post.module.scss";
 const index = () => {
   const router = useRouter();
   const id = router.query.id as string;
-  const { data = [], isLoading } = useGetBlogItemQuery(router.query.id);
-console.log(data)
+  const { data = [], isLoading } = useGetBlogItemQuery(id);
+  if (isLoading){
+    return <>LOADING!</>
+  }
   return (
     <div>
       <Layout />
@@ -22,10 +24,15 @@ console.log(data)
         </div>
         <hr />
         {data && (
-          <div>
-            <p className={styles.title}>заголовок: {data.title}</p>
-            <img src={`${data.image}`} className={styles.image} alt={data.image} />
-            <span>описание: {data.body}</span>
+          <div  >
+            {/* <p dangerouslySetInnerHTML={{__html:data.title}}>{data.title}</p> */}
+            <p className={styles.title}>{data.title}</p>
+            <img
+              src={`${data.image}`}
+              className={styles.image}
+              alt={data.image}
+            />
+            <span>{data.body}</span>
             <br />
             <img src={data.image2} className={styles.image} alt="" />
             <span> {data.body2}</span>

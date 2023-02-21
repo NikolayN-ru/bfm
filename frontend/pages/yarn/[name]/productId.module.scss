@@ -11,7 +11,7 @@
   width: 500px;
   padding-right: 30px;
   border-right: 1px solid rgb(153, 153, 153);
-  cursor: zoom-in;
+  cursor: pointer;
 
   img {
     margin-top: 20px;
@@ -100,4 +100,14 @@
 
 .toast-message {
   width: 100px;
+}
+
+.variablePhoto {
+  display: flex;
+  margin-top: 30px;
+  gap: 20px;
+
+  .variableItem {
+    width: 100px;
+  }
 }

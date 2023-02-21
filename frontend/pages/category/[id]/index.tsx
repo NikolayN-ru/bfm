@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { FC } from "react";
+import Filter from "../../../components/Filter/Filter";
 import ItemProduct from "../../../components/ItemProduct/ItemProduct";
 import Layout from "../../../components/layout/Layout";
 import { useGetCategoryItemQuery } from "../../../redux/categoryApi";
@@ -19,6 +20,7 @@ const index: FC = (): JSX.Element => {
       <div>
         <div style={{ display: "flex", gap: "20px" }}>
           <Layout>
+            <Filter />
             {/* <Filter /> */}
             <div className={styles.items}>
               {data &&

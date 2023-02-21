@@ -1,10 +1,20 @@
 .menu {
+  // position: sticky;
+  position: fixed;
+  top: 0px;
+  right: 20%;
+  width: 1300px;
+  // top: 0px;
   margin: 0 auto;
   padding: 30px;
   padding-top: 4px;
   padding-bottom: 4px;
   display: flex;
+  justify-content: center;
   gap: 1px;
+  background: #fff;
+  z-index: 100;
+  // margin-bottom: 30px;
 }
 
 .item {
@@ -67,6 +77,8 @@
 }
 .main:hover {
   .category {
+    // top:0;
+    // left: 0;
     opacity: 1;
     display: block;
   }
@@ -86,4 +98,10 @@
 .categoryItem:hover {
   opacity: 0.8;
   background-color: #475aa7;
+}
+
+.linkOne {
+  // position: absolute;
+  width: 100px;
+  background-color: #8ec11e;
 }

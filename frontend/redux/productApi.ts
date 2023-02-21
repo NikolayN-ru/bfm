@@ -1,10 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { back_api } from "../variables";
 
 export const productApi = createApi({
   reducerPath: "productApi",
   tagTypes: ["Products"],
-  // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4200/api/yarn/" }),
-  baseQuery: fetchBaseQuery({ baseUrl: "http://127.0.0.1:8000/api/" }),
+  // baseQuery: fetchBaseQuery({ baseUrl: "http://127.0.0.1:8000/api/" }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${back_api}/api/` }),
   endpoints: (build) => ({
     getProduct: build.query({
       query: (name = "") => `variables/${name}`,

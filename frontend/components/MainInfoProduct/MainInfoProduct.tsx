@@ -15,39 +15,49 @@ const MainInfoProduct: FC<any> = ({ setMainDesc }) => {
     return null;
   }
 
+  const { name, category, length, needles, wieght, tag, price } = data[0];
+
   return (
     <div className={styles.left}>
       <div className={styles.title}>
-        <h3>{data[0] && data[0].name}</h3>
+        <h3>{name}</h3>
       </div>
       <div className={styles.title}>
-        страна производитель: {data[0] && data[0].category.country}
+        страна производитель: {category.country}
       </div>
-      <div className={styles.title}>
-        фирма производитель: {data[0].category && data[0].category.title}
-      </div>
-      <div className={styles.title}>
-        длинна: {data[0] && data[0].length} метров.
-      </div>
-      <div className={styles.title}>
-        рекомендуемые спицы: {data[0] && data[0].needles} мм.
-      </div>
-      <div className={styles.title}>
-        вес мотка: {data[0] && data[0].wieght} грамм.
-      </div>
+      <div className={styles.title}>фирма производитель: {category.title}</div>
+      <div className={styles.title}>длинна: {length} метров.</div>
+      <div className={styles.title}>рекомендуемые спицы: {needles} мм.</div>
+      <div className={styles.title}>вес мотка: {wieght} грамм.</div>
       <div className={styles.title}>
         состав:
         <hr />
-        {data[0].tag &&
-          data[0].tag.map((item: any, id: number) => {
-            return (
-              <div key={id} className={styles.tag}>
-                {item.title}
-              </div>
-            );
-          })}
+        {tag.map((item: any, id: number) => {
+          return (
+            <div key={id} className={styles.tag}>
+              {item.title}
+            </div>
+          );
+        })}
       </div>
-      <div className={styles.price}>цена: {data[0] && data[0].price} руб.</div>
+      {data[0].discount || data[0].discountPercentage ? (
+        <>
+          <div className={styles.price}>
+            <div style={{ textDecoration: "line-through", fontSize: "16px" }}>
+              старая цена: {data[0] && data[0].price} руб.
+            </div>
+            <div className={styles.discount}>
+              цена со скидкой:{" "}
+              {data[0].discount
+                ? data[0].price - data[0].discount
+                : (data[0].price * data[0].discountPercentage) / 100}
+              руб.
+            </div>
+          </div>
+        </>
+      ) : (
+        <div className={styles.price}>цена: {price} руб.</div>
+      )}
     </div>
   );
 };

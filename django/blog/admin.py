@@ -1,17 +1,17 @@
 from django.contrib import admin
 from .models import Post, Tag, Category
-
 from django import forms
-# from ckeditor.widgets import CKEditorWidget
+from ckeditor.widgets import CKEditorWidget
 
 admin.site.register(Tag)
 admin.site.register(Category)
 
 
 class EventAdminForm(forms.ModelForm):
-    # body = forms.CharField(widget=CKEditorWidget())
-    # body2 = forms.CharField(widget=CKEditorWidget())
-    # body3 = forms.CharField(widget=CKEditorWidget())
+    # description = forms.CharField(widget=CKEditorWidget())
+    body = forms.CharField(widget=CKEditorWidget())
+    body2 = forms.CharField(widget=CKEditorWidget())
+    body3 = forms.CharField(widget=CKEditorWidget())
 
     class Meta:
         model = Post
@@ -27,15 +27,17 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ('-pk',)
     # date_hierarchy
     search_fields = ('title',)
+    filter_horizontal = ('tags',)
     # prepopulated_fields = {'title': ('title',)}
     fieldsets = (
-        ('Optional Information', {
-            'classes': ('collapse',),
-            'fields': ('author', 'tags', 'category', 'visitors', 'num_stars', 'available',)
-        }),
+
         ('Основная информация', {
             'description': "These fields are required for each event.",
-            'fields': (('title', 'body', 'image', 'body2', 'image2', 'body3', 'image3', 'shirt_size'),)
+            'fields': (('title'), ('body', 'image', 'body2', 'image2', 'body3', 'image3', 'shirt_size'),)
+        }),
+        ('Optional Information', {
+            # 'classes': ('collapse',),
+            'fields': ('author', 'tags', 'category', 'visitors', 'num_stars', 'available',)
         }),
 
     )
