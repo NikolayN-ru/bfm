@@ -1,4 +1,4 @@
-import styles from "./MainInfoProduct.module.scss";
+import _ from "./MainInfoProduct.module.scss";
 import { useRouter } from "next/router";
 import { useGetProductMainQuery } from "../../redux/productApi";
 import { FC } from "react";
@@ -12,51 +12,59 @@ const MainInfoProduct: FC<any> = ({ setMainDesc }) => {
   }
 
   if (isLoading) {
-    return null;
+    return <>LOADING</>;
   }
 
-  const { name, category, length, needles, wieght, tag, price } = data[0];
+  const {
+    name,
+    category,
+    length,
+    needles,
+    wieght,
+    tag,
+    price,
+    discount,
+    discountPercentage,
+  } = data[0];
 
   return (
-    <div className={styles.left}>
-      <div className={styles.title}>
+    <div className={_.left}>
+      <div className={_.title}>
         <h3>{name}</h3>
       </div>
-      <div className={styles.title}>
-        страна производитель: {category.country}
-      </div>
-      <div className={styles.title}>фирма производитель: {category.title}</div>
-      <div className={styles.title}>длинна: {length} метров.</div>
-      <div className={styles.title}>рекомендуемые спицы: {needles} мм.</div>
-      <div className={styles.title}>вес мотка: {wieght} грамм.</div>
-      <div className={styles.title}>
+      <div className={_.title}>страна производитель: {category.country}</div>
+      <div className={_.title}>фирма производитель: {category.title}</div>
+      <div className={_.title}>длинна: {length} метров.</div>
+      <div className={_.title}>рекомендуемые спицы: {needles} мм.</div>
+      <div className={_.title}>вес мотка: {wieght} грамм.</div>
+      <div className={_.title}>
         состав:
         <hr />
         {tag.map((item: any, id: number) => {
           return (
-            <div key={id} className={styles.tag}>
+            <div key={id} className={_.tag}>
               {item.title}
             </div>
           );
         })}
       </div>
-      {data[0].discount || data[0].discountPercentage ? (
+      {discount || discountPercentage ? (
         <>
-          <div className={styles.price}>
+          <div className={_.price}>
             <div style={{ textDecoration: "line-through", fontSize: "16px" }}>
-              старая цена: {data[0] && data[0].price} руб.
+              старая цена: {price} руб.
             </div>
-            <div className={styles.discount}>
+            <div className={_.discount}>
               цена со скидкой:{" "}
-              {data[0].discount
-                ? data[0].price - data[0].discount
-                : (data[0].price * data[0].discountPercentage) / 100}
+              {discount
+                ? price - discount
+                : +price - (price * discountPercentage) / 100}
               руб.
             </div>
           </div>
         </>
       ) : (
-        <div className={styles.price}>цена: {price} руб.</div>
+        <div className={_.price}>цена: {price} руб.</div>
       )}
     </div>
   );

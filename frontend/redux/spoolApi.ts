@@ -4,7 +4,7 @@ import { back_api } from "../variables";
 export const spoolApi = createApi({
   reducerPath: "spoolApi",
   tagTypes: ["spoolApiCategoryes"],
-  baseQuery: fetchBaseQuery({ baseUrl: `${back_api}/api/spool` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${back_api}/api/spoolCategory` }),
   endpoints: (build) => ({
     getSpoolApiAll: build.query({
       // query: (limit = '') => `all?${limit && `_limit=${limit}`}`,

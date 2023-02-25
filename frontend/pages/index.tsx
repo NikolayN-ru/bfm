@@ -2,6 +2,7 @@ import axios from "axios";
 import Head from "next/head";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Filter from "../components/Filter/Filter";
 import ItemProduct from "../components/ItemProduct/ItemProduct";
 import Layout from "../components/layout/Layout";

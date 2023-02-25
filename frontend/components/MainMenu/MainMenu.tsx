@@ -40,7 +40,7 @@ const MainMenu = () => {
       <div className={styles.main}>
         <Link href={"/"}>
           <div className={styles.item}>
-            {"Пряжа"}
+            {"Пряжа (в мотках)"}
             {/* <div className={styles.category}>
           </div> */}
           </div>

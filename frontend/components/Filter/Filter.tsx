@@ -1,51 +1,79 @@
 import Link from "next/link";
+import { FC, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useGetCategoryQuery } from "../../redux/categoryApi";
-import styles from "./Filter.module.scss";
+import { addTags, clearFilter, setMinMax } from "../../redux/filterReducer";
+import { useGetTagYarnApiAllQuery } from "../../redux/tagYarnApi";
+import s from "./Filter.module.scss";
 
-const dataLocal: string[] = [
-  "кашимир",
-  "вискоза",
-  "ангора",
-  "меринос",
-  "альпака",
-  "шерсть",
-  "хлопок",
-  "лен",
-  "шелк",
-  "кид мохер",
-];
+const Filter: FC<any> = ({}): JSX.Element => {
+  const { data, isLoading } = useGetTagYarnApiAllQuery("all");
+  const dispatch = useDispatch();
+  const [stateMin, setStateMin] = useState(0);
+  const [stateMax, setStateMax] = useState(0);
+  const [tagVariable, setTagVarible] = useState<string[]>([]);
 
-const Filter = () => {
-  // const { data, isLoading } = useGetCategoryQuery("all");
+  if (isLoading) return <div>Loading</div>;
+
+  const clearValue = () => {
+    dispatch(clearFilter());
+    setStateMin(0);
+    setStateMax(0);
+  };
+
+  const setTagVariables = (title: string) => {
+    if (tagVariable.indexOf(title) >= 0) {
+      setTagVarible((prev: any) => prev.filter((n: any) => n != title));
+    } else {
+      setTagVarible((prev: any) => [...prev, title]);
+    }
+  };
+
   return (
-    <div className={styles.wrapper}>
-      {/* <p>Фильтры:</p> */}
-      <div className={styles.coast}>
-        {/* {data &&
-          data.map((item: any, id: string) => {
-            return (
-              <p className={styles.categoryItem} key={id}>
-                <Link href={"/category/" + item.id}>{item.title}</Link>
-              </p>
-            );
-          })} */}
+    <div className={s.wrapper}>
+      <div className={s.coast}>
+        <button className={s.btn} onClick={() => clearValue()}>
+          сбросить фильтры
+        </button>
         <hr />
         <p>количество метров в 50 граммах:</p>
-        <input type="text" placeholder="от" />
-        <input type="text" placeholder="до" />
-        <button>фильтровать</button>
+        <input
+          type="text"
+          placeholder="от"
+          onChange={(e: any) => setStateMin(e.target.value)}
+          value={stateMin}
+        />
+        <input
+          type="text"
+          placeholder="до"
+          onChange={(e: any) => setStateMax(e.target.value)}
+          value={stateMax}
+        />
+        <button
+          className={s.btn}
+          onClick={() => dispatch(setMinMax({ min: stateMin, max: stateMax }))}
+        >
+          фильтровать по цене
+        </button>
         <hr />
       </div>
-      <div className={styles.compound}>
+      <div className={s.compound}>
         <p>состав:</p>
-        {dataLocal.map((item: string, id: number) => (
+        {data.map((item: any, id: number) => (
           <div key={id}>
-            <input type="checkbox" id="scales" name={item} />
-            <label htmlFor={item}>{item}</label>
+            <input
+              type="checkbox"
+              id="scales"
+              name={item}
+              onChange={() => setTagVariables(item.title)}
+            />
+            <label htmlFor={item}>{item.title}</label>
           </div>
         ))}
       </div>
-      <button className={styles.btn}>применить</button>
+      <button onClick={() => dispatch(addTags(tagVariable))} className={s.btn}>
+        фильтровать по составу
+      </button>
     </div>
   );
 };

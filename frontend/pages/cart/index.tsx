@@ -10,7 +10,6 @@ import styles from "./cart.module.scss";
 import { BtnSubmit, WrapperCart } from "./cart.styled";
 
 const Cart = () => {
-
   const [total, setTotal] = useState<any>();
   const products = useSelector((state: any) => state.cart.cart);
   const dispatch = useDispatch();
@@ -47,7 +46,13 @@ const Cart = () => {
                     <span>
                       цена:<div>{item.price} руб.</div>
                     </span>
-                    <button onClick={() => dispatch(removeItem({"title": item.title, "color": item.color}))}>
+                    <button
+                      onClick={() =>
+                        dispatch(
+                          removeItem({ title: item.title, color: item.color })
+                        )
+                      }
+                    >
                       удалить
                     </button>
                   </div>

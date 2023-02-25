@@ -30,7 +30,7 @@ const cartSlice = createSlice({
       }
     },
     removeItem: (state, { payload }) => {
-      console.log(payload, "payload");
+      // console.log(payload, "payload");
       //   state.cart = state.cart.filter((item: any) => (item.title !== payload.title && item.color !== payload.color));
       state.cart = state.cart.filter((item: any) => {
         // console.log(item.title, payload.title, "!!!!!!");

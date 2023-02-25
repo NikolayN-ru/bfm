@@ -4,7 +4,8 @@ from rest_framework.response import Response
 from rest_framework import generics
 from rest_framework.views import APIView
 from yarn3.models import Yarn, VariablesYarn, Category, Tag
-from .serializers import YarnSerializer, TagSerializer, VariablesYarnSerializer, CategorySerializer
+from spool.models import Category as CategorySpool, Spool
+from .serializers import YarnSerializer, TagSerializer, VariablesYarnSerializer, CategorySerializer, CategorySpoolSerializer
 
 
 class CategoryView(generics.ListAPIView):
@@ -14,6 +15,9 @@ class CategoryView(generics.ListAPIView):
 
 class CategoryViewDetail(APIView):
     def get(self, request, pk):
+        q=request.body
+        # print(request.body, 'request')
+        # print(request.GET.get('filter'), 'request')
         yarn = Yarn.objects.filter(category=pk)
         serializer = YarnSerializer(yarn, many=True)
         return Response(serializer.data)
@@ -73,3 +77,8 @@ class PostAPIView(generics.ListAPIView):
 class DetailTodo(generics.RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+
+
+class CategorySpoolView(generics.ListAPIView):
+    queryset = CategorySpool.objects.all()
+    serializer_class = CategorySpoolSerializer
