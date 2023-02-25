@@ -5,6 +5,7 @@ import styles from "./MainMenu.module.scss";
 
 const dataMain = [
   // { title: "Пряжа", href: "/" },
+  { title: "Бобины", href: "/spool" },
   { title: "Спицы", href: "/needles" },
   { title: "Изделия", href: "/products" },
   { title: "Мастер классы", href: "/mk" },

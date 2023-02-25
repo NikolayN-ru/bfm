@@ -16,19 +16,19 @@ const dataLocal: string[] = [
 ];
 
 const Filter = () => {
-    const { data, isLoading } = useGetCategoryQuery("all");
+  // const { data, isLoading } = useGetCategoryQuery("all");
   return (
     <div className={styles.wrapper}>
       {/* <p>Фильтры:</p> */}
       <div className={styles.coast}>
-        {data &&
+        {/* {data &&
           data.map((item: any, id: string) => {
             return (
               <p className={styles.categoryItem} key={id}>
                 <Link href={"/category/" + item.id}>{item.title}</Link>
               </p>
             );
-          })}
+          })} */}
         <hr />
         <p>количество метров в 50 граммах:</p>
         <input type="text" placeholder="от" />

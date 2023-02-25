@@ -4,6 +4,7 @@ import cartReducer from "./cartReducer";
 import { categoryApi } from "./categoryApi";
 import mainProduct from "./mainProduct";
 import { productApi } from "./productApi";
+import { spoolApi } from "./spoolApi";
 import { waresCategoryAPi } from "./wariesCategoryApi";
 
 export const store = configureStore({
@@ -12,6 +13,7 @@ export const store = configureStore({
     [categoryApi.reducerPath]: categoryApi.reducer,
     [waresCategoryAPi.reducerPath]: waresCategoryAPi.reducer,
     [blogApi.reducerPath]: blogApi.reducer,
+    [spoolApi.reducerPath]: spoolApi.reducer,
     cart: cartReducer,
     mainProduct: mainProduct,
   },
@@ -21,5 +23,6 @@ export const store = configureStore({
       categoryApi.middleware,
       waresCategoryAPi.middleware,
       blogApi.middleware,
+      spoolApi.middleware,
     ),
 });

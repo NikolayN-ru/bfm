@@ -1,0 +1,14 @@
+.items {
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 50px;
+}
+
+.data {
+  display: flex;
+  gap: 20px;
+  color: #000;
+  width: 900px;
+}

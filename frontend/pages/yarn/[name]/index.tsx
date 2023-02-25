@@ -23,6 +23,8 @@ interface IVariables {
 const index: FC = () => {
   const router = useRouter();
   const { data = [], isLoading } = useGetProductQuery(router.query.name);
+  const { data: data2 = [] } = useGetProductQuery(router.query.name);
+  // console.log(data2);
 
   const dispatch = useDispatch();
   const [variables, setVariables] = useState<IVariables>();
