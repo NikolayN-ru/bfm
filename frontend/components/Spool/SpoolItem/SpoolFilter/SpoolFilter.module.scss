@@ -1,0 +1,26 @@
+.wrapper {
+  width: 200px;
+  height: 600px;
+  //   background: rgb(47, 67, 158);
+  //   color: white;
+}
+
+.items {
+  // display: inline
+}
+
+.item {
+  padding: 10px;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.item:hover {
+  color: white;
+  background: rgb(37, 52, 123);
+  width: 200px;
+  opacity: 0.7;
+  padding-left: 50px;
+  left: 50px;
+  top: 30px;
+}

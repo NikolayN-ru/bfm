@@ -38,7 +38,14 @@ class PostSerializer(serializers.ModelSerializer):
                   'image2', 'body3', 'image3', 'date', 'category')
 
 
+# бобины
 class CategorySpoolSerializer(serializers.ModelSerializer):
     class Meta:
         model = CategorySpool
+        fields = '__all__'
+
+
+class SpoolSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Spool
         fields = '__all__'

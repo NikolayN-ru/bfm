@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { FC, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useGetCategoryQuery } from "../../redux/categoryApi";
 import { addTags, clearFilter, setMinMax } from "../../redux/filterReducer";
 import { useGetTagYarnApiAllQuery } from "../../redux/tagYarnApi";
 import s from "./Filter.module.scss";
@@ -9,16 +8,16 @@ import s from "./Filter.module.scss";
 const Filter: FC<any> = ({}): JSX.Element => {
   const { data, isLoading } = useGetTagYarnApiAllQuery("all");
   const dispatch = useDispatch();
-  const [stateMin, setStateMin] = useState(0);
-  const [stateMax, setStateMax] = useState(0);
+  const [stateMin, setStateMin] = useState<any>(0);
+  const [stateMax, setStateMax] = useState<any>(0);
   const [tagVariable, setTagVarible] = useState<string[]>([]);
 
   if (isLoading) return <div>Loading</div>;
 
   const clearValue = () => {
     dispatch(clearFilter());
-    setStateMin(0);
-    setStateMax(0);
+    setStateMin(null);
+    setStateMax(null);
   };
 
   const setTagVariables = (title: string) => {
@@ -37,23 +36,31 @@ const Filter: FC<any> = ({}): JSX.Element => {
         </button>
         <hr />
         <p>количество метров в 50 граммах:</p>
-        <input
-          type="text"
-          placeholder="от"
-          onChange={(e: any) => setStateMin(e.target.value)}
-          value={stateMin}
-        />
-        <input
-          type="text"
-          placeholder="до"
-          onChange={(e: any) => setStateMax(e.target.value)}
-          value={stateMax}
-        />
+        <div style={{ display: "flex", alignItems: "center", gap: "22px" }}>
+          <span>от</span>
+          <input
+            className={s.input}
+            type="text"
+            placeholder="от"
+            onChange={(e: any) => setStateMin(e.target.value)}
+            value={stateMin && stateMin}
+          />
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
+          <span>до</span>
+          <input
+            className={s.input}
+            type="text"
+            placeholder="до"
+            onChange={(e: any) => setStateMax(e.target.value)}
+            value={stateMax}
+          />
+        </div>
         <button
           className={s.btn}
           onClick={() => dispatch(setMinMax({ min: stateMin, max: stateMax }))}
         >
-          фильтровать по цене
+          фильтровать по метражу
         </button>
         <hr />
       </div>

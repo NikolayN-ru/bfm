@@ -21,8 +21,9 @@ INSTALLED_APPS = [
     "yarn3",
     "api",
     "blog.apps.BlogConfig",
-    "needles",
+    # "needles", // переделать !! needles2
     "spool",
+    "knitwear",
 ]
 
 # NEW - любые права доступа у всех

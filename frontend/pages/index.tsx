@@ -43,10 +43,9 @@ const HomePage = () => {
                 })}
             </div>
             <div className={styles.items}>
-              {data &&
-                data.map((item: any, id: number) => (
-                  <ItemProduct key={id} item={item} />
-                ))}
+              {data.map((item: any, id: number) => (
+                <ItemProduct key={id} item={item} />
+              ))}
             </div>
           </div>
         </Layout>

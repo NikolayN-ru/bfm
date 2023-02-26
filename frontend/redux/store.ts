@@ -8,26 +8,29 @@ import { productApi } from "./productApi";
 import { spoolApi } from "./spoolApi";
 import { tagYarnApi } from "./tagYarnApi";
 import { waresCategoryAPi } from "./wariesCategoryApi";
+import { spoolApiItem } from "./spoolItemApi";
 
 export const store = configureStore({
   reducer: {
-    [productApi.reducerPath]: productApi.reducer,
-    [categoryApi.reducerPath]: categoryApi.reducer,
-    [waresCategoryAPi.reducerPath]: waresCategoryAPi.reducer,
     [blogApi.reducerPath]: blogApi.reducer,
     [spoolApi.reducerPath]: spoolApi.reducer,
+    [productApi.reducerPath]: productApi.reducer,
     [tagYarnApi.reducerPath]: tagYarnApi.reducer,
+    [categoryApi.reducerPath]: categoryApi.reducer,
+    [spoolApiItem.reducerPath]: spoolApiItem.reducer,
+    [waresCategoryAPi.reducerPath]: waresCategoryAPi.reducer,
     cart: cartReducer,
-    mainProduct: mainProduct,
     filter: filterReducer,
+    mainProduct: mainProduct,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
-      productApi.middleware,
-      categoryApi.middleware,
-      waresCategoryAPi.middleware,
       blogApi.middleware,
       spoolApi.middleware,
-      tagYarnApi.middleware
+      tagYarnApi.middleware,
+      productApi.middleware,
+      categoryApi.middleware,
+      spoolApiItem.middleware,
+      waresCategoryAPi.middleware
     ),
 });

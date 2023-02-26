@@ -1,4 +1,4 @@
-from .serializers import PostSerializer
+from .serializers import PostSerializer, SpoolSerializer
 from blog.models import Post
 from rest_framework.response import Response
 from rest_framework import generics
@@ -15,7 +15,7 @@ class CategoryView(generics.ListAPIView):
 
 class CategoryViewDetail(APIView):
     def get(self, request, pk):
-        q=request.body
+        q = request.body
         # print(request.body, 'request')
         # print(request.GET.get('filter'), 'request')
         yarn = Yarn.objects.filter(category=pk)
@@ -78,7 +78,20 @@ class DetailTodo(generics.RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
+# бобины
+
 
 class CategorySpoolView(generics.ListAPIView):
     queryset = CategorySpool.objects.all()
     serializer_class = CategorySpoolSerializer
+
+
+class SpoolView(generics.ListAPIView):
+    # queryset = Spool.objects.all().filter(available=True).order_by
+    queryset = Spool.objects.all()
+    serializer_class = SpoolSerializer
+
+
+class SpoolViewItem(generics.RetrieveAPIView):
+    queryset = Spool.objects.all()
+    serializer_class = SpoolSerializer

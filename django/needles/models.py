@@ -12,7 +12,7 @@ class Variables(models.Model):
 
 
 class Material(models.Model):
-    name= models.CharField(max_length=100, verbose_name='Материал')
+    name = models.CharField(max_length=100, verbose_name='Материал')
 
     class Meta:
         verbose_name_plural = "Материал"

@@ -1,24 +1,51 @@
 .wrapper {
-    width: 200px;
-    padding: 20px;
-    background-color: rgb(118, 85, 165);
-    color: rgb(216, 216, 216);
+  width: 200px;
+  padding: 20px;
+  background-color: rgb(118, 85, 165);
+  color: rgb(216, 216, 216);
+  .coast {
+    p {
+      align-items: center;
+    }
+  }
 }
 
 .btn {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    padding: 20px;
-    color:rgb(52, 88, 154);
-    background-color: rgb(201, 197, 204);
-    border: none;
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px 5px;
+  color: rgb(52, 88, 154);
+  background-color: rgb(201, 197, 204);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s;
 }
 
 .btn:hover {
-    color: rgb(46, 78, 133);
-    background-color: rgb(230, 236, 245);
+  scale: 1.1;
+  color: rgb(46, 78, 133);
+  background-color: rgb(230, 236, 245);
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
+  //   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+  //     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+  //     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .btn:active {
-    opacity: 0.7;
+  opacity: 0.7;
+}
+
+.input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 0;
+  border-radius: 5px;
+}
+.input:hover {
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.06);
 }

@@ -8,7 +8,8 @@ import { shangeMainProduct } from "../../redux/mainProduct";
 import { back_api } from "../../variables";
 
 const ItemProduct: FC<any> = ({ item }): JSX.Element | null => {
-  let { image, name, price, category, discount, discountPercentage } = item;
+  let { image, name, price, category, discount, discountPercentage, length } =
+    item;
   const filterProduct = useSelector((state: any) => state.filter.filter[0]);
   const tagsFilter = useSelector(
     (state: any) => state.filter.filter[1].variablles
@@ -23,9 +24,9 @@ const ItemProduct: FC<any> = ({ item }): JSX.Element | null => {
     sale = price - discount;
   }
 
-  let endPrice = discount ?? discountPercentage ?? price;
+  // let endPrice = discount ?? discountPercentage ?? price;
   if (filterProduct.min && filterProduct.max) {
-    if (filterProduct.min >= endPrice || endPrice >= filterProduct.max) {
+    if (filterProduct.min >= length || length >= filterProduct.max) {
       return null;
     }
   }

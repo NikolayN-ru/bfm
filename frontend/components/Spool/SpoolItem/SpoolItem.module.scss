@@ -1,0 +1,15 @@
+.wrapper {
+    color: rgb(36, 85, 153);
+    // width: 200px;
+//   display: flex;
+//   flex-wrap: wrap;
+cursor: pointer;
+}
+.wrapper:hover{
+    opacity: .5;
+}
+
+.spoolItem {
+  width: 300px;
+  height: 300px;
+}
