@@ -7,8 +7,8 @@ const SpoolFilter: FC<any> = ({}): JSX.Element => {
   return (
     <div className={s.wrapper}>
       <div className={s.items}>
-        {localData.map((item: any) => {
-          return <div className={s.item}>{item}</div>;
+        {localData.map((item: any, id: number) => {
+          return <div key={id} className={s.item}>{item}</div>;
         })}
       </div>
     </div>

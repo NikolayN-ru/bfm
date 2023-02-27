@@ -1,49 +1,52 @@
-import axios from "axios";
-import Link from "next/link";
+import { FC } from "react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import Layout from "../../../components/layout/Layout";
-import { useGetBlogItemQuery } from "../../../redux/blogApi";
-import { back_api } from "../../../variables";
-import styles from "./post.module.scss";
+import Link from "next/link";
+import Image from "next/image";
 
-const index = () => {
+import { useGetBlogItemQuery } from "../../../redux/blogApi";
+
+import Layout from "../../../components/layout/Layout";
+import s from "./post.module.scss";
+
+const Index: FC = (): JSX.Element => {
   const router = useRouter();
   const id = router.query.id as string;
-  const { data = [], isLoading } = useGetBlogItemQuery(id);
-  if (isLoading){
-    return <>LOADING!</>
+  const { data, isLoading } = useGetBlogItemQuery(id);
+  if (isLoading) {
+    return <p>LOADING!</p>;
   }
+  const { title, image, body, image2, image3, body2, body3 } = data;
   return (
     <div>
       <Layout />
-      <div className={styles.wrapper}>
+      <div className={s.wrapper}>
         <hr />
-        <div className={styles.link}>
+        <div className={s.link}>
           <Link href="/blog">на главную</Link>
         </div>
         <hr />
-        {data && (
-          <div  >
-            {/* <p dangerouslySetInnerHTML={{__html:data.title}}>{data.title}</p> */}
-            <p className={styles.title}>{data.title}</p>
-            <img
-              src={`${data.image}`}
-              className={styles.image}
-              alt={data.image}
-            />
-            <span>{data.body}</span>
-            <br />
-            <img src={data.image2} className={styles.image} alt="" />
-            <span> {data.body2}</span>
-            <br />
-            <img src={data.image3} className={styles.image} alt="" />
-            <span> {data.body3}</span>
-          </div>
-        )}
+        <div>
+          {/* <p dangerouslySetInnerHTML={{__html:data.title}}>{data.title}</p> */}
+          <p className={s.title}>{data.title}</p>
+          {/* <img src={data.image} className={s.image} alt={data.image} /> */}
+          <Image
+            // loader={myLoader}
+            src={image}
+            alt={image}
+            width={500}
+            height={500}
+          />
+          <span>{body}</span>
+          <br />
+          <Image src={image2} alt={image2} width={500} height={500} />
+          <span> {body2}</span>
+          <br />
+          <Image src={image3} alt={image3} width={500} height={500} />
+          <span> {body3}</span>
+        </div>
       </div>
     </div>
   );
 };
 
-export default index;
+export default Index;

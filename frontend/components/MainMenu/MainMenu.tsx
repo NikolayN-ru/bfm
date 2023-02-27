@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FC } from "react";
 import { useSelector } from "react-redux";
 import { useGetCategoryQuery } from "../../redux/categoryApi";
 import styles from "./MainMenu.module.scss";
@@ -13,7 +14,7 @@ const dataMain = [
   { title: "О нас", href: "/about" },
 ];
 
-const CatrSvg = () => {
+const CatrSvg: FC = ({}): JSX.Element => {
   return (
     <svg
       className={styles.cartMain}
@@ -33,17 +34,13 @@ const CatrSvg = () => {
   );
 };
 
-const MainMenu = () => {
+const MainMenu: FC<any> = ({}): JSX.Element => {
   const countProduct = useSelector((state: any) => state.cart.cart);
   return (
     <div className={styles.menu}>
       <div className={styles.main}>
         <Link href={"/"}>
-          <div className={styles.item}>
-            {"Пряжа (в мотках)"}
-            {/* <div className={styles.category}>
-          </div> */}
-          </div>
+          <div className={styles.item}>{"Пряжа (в мотках)"}</div>
         </Link>
       </div>
       {dataMain.map(({ title, href }: any, id: number) => (

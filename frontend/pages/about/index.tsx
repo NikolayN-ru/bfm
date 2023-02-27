@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Select from "react-select";
+import Image from "next/image";
 
 import Layout from "../../components/layout/Layout";
 import styles from "./about.module.scss";
@@ -28,7 +29,8 @@ const Index: FC = () => {
             <p>cб, вс 11:00 - 17:00</p>
           </div>
           <div>
-            <img src="/point.png" alt="" width="90%" />
+            {/* <img src="/point.png" alt="" width="90%" /> */}
+            <Image src="/point.png" alt="point" width={800} height={400} />
           </div>
         </div>
       </Layout>

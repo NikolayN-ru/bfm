@@ -42,8 +42,8 @@ const ItemProduct: FC<any> = ({ item }): JSX.Element | null => {
   return (
     <Link href={linkPath} onClick={() => dispatch(shangeMainProduct(item))}>
       <div className={styles.wrapper}>
-        <img src={`${image}`} alt="" />
-        {/* <Image src={`${image}`} alt={'yarn'}   width='150' height='300'/> */}
+        <img src={image} alt="" />
+        {/* <Image src={image} alt={'yarn'}   width={150} height={300}/> */}
         <div className={styles.description}>
           <p className={styles.category}>{category.title}</p>
           <h3>{name}</h3>

@@ -5,7 +5,7 @@ import { addTags, clearFilter, setMinMax } from "../../redux/filterReducer";
 import { useGetTagYarnApiAllQuery } from "../../redux/tagYarnApi";
 import s from "./Filter.module.scss";
 
-const Filter: FC<any> = ({}): JSX.Element => {
+const Filter: FC = ({}): JSX.Element => {
   const { data, isLoading } = useGetTagYarnApiAllQuery("all");
   const dispatch = useDispatch();
   const [stateMin, setStateMin] = useState<any>(0);

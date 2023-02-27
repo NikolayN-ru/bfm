@@ -7,17 +7,17 @@ const nextConfig = {
   //     {
   //       protocol: 'http',
   //       hostname: 'localhost',
-  //       port: '4200',
+  //       port: '8000',
   //       pathname: '/**/**/**.*',
   //     },
   //   ],
   // },
   // images: {
-  //   domains: ['localhost:4200'],
+  //   domains: ["localhost:4200"],
   // },
   compiler: {
-    styledComponents: true
-  }
-}
+    styledComponents: true,
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
