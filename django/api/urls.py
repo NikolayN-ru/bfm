@@ -1,9 +1,10 @@
 from django.urls import path
 
-from .views import CategorySpoolView, CategoryView, CategoryViewDetail, DetailTodo, PostAPIView, SpoolView, SpoolViewItem, YarnAPIView, DetailYarn, TagAPI, VariablesYarnView, DetailVariablesYarn, TagAPIDetail
+from .views import CategorySpoolView, CategoryView, CategoryViewDetail, DetailTodo, NewCreatePostView, PostAPIView, SpoolView, SpoolViewItem, YarnAPIView, DetailYarn, TagAPI, VariablesYarnView, DetailVariablesYarn, TagAPIDetail
 
 urlpatterns = [
     path('blog/<int:pk>/', DetailTodo.as_view()),
+    path('blog-new/', NewCreatePostView.as_view()),
     path('blog/', PostAPIView.as_view()),
     path('category/', CategoryView.as_view()),
     path('category/<int:pk>', CategoryViewDetail.as_view()),

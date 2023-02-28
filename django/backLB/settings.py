@@ -21,7 +21,7 @@ INSTALLED_APPS = [
     "yarn3",
     "api",
     "blog.apps.BlogConfig",
-    # "needles", // переделать !! needles2
+    "needles2",
     "spool",
     "knitwear",
 ]
@@ -41,8 +41,8 @@ ALLOWED_HOSTS = [
 
 CORS_ALLOWED_ORIGINS = [
     # "https://example.com",
-    # "http://localhost:8080",
     "http://localhost:3000",
+    "http://localhost:3001",
     "http://77.222.63.220:3000",
     # "http://127.0.0.1:3000",
 ]

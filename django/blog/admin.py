@@ -1,10 +1,11 @@
 from django.contrib import admin
-from .models import Post, Tag, Category
+from .models import Post, Tag, Category, Comments
 from django import forms
 from ckeditor.widgets import CKEditorWidget
 
 admin.site.register(Tag)
 admin.site.register(Category)
+admin.site.register(Comments)
 
 
 class EventAdminForm(forms.ModelForm):
