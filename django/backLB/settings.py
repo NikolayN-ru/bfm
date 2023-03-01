@@ -4,7 +4,12 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-9c6%034-42%ozwr2ksuo^!lx7^@n3v#sj0$&q#rmv*opmg&ejj"
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'backend',
+    '127.0.0.1',
+    '*',
+    '77.222.63.220'
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -15,8 +20,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     "rest_framework",
+    "rest_framework.authtoken",
     "corsheaders",
     "ckeditor",
+    "djoser",
 
     "yarn3",
     "api",
@@ -28,16 +35,14 @@ INSTALLED_APPS = [
 
 # NEW - любые права доступа у всех
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
-    ]
+    # 'DEFAULT_PERMISSION_CLASSES': [
+    # 'rest_framework.permissions.AllowAny',
+    # ]
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    )
 }
-
-ALLOWED_HOSTS = [
-    'backend',
-    '127.0.0.1',
-    '*',
-]
 
 CORS_ALLOWED_ORIGINS = [
     # "https://example.com",
@@ -116,3 +121,29 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # ]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+DJOSER = {
+    'PASSWORD_RESET_CONFIRM_URL': '#/password/reset/confirm/{uid}/{token}',
+    'USERNAME_RESET_CONFIRM_URL': '#/username/reset/confirm/{uid}/{token}',
+    'ACTIVATION_URL': '#/activate/{uid}/{token}',
+    'SEND_ACTIVATION_EMAIL': False,
+    'SERIALIZERS': {}, 
+}
+
+# login
+# localhost:8000/auth/token/login
+# body
+# username admin
+# password admin
+
+#protected query
+# http://localhost:8000/api/blog/
+# headers
+# Authorization
+# Token c8b670b7836240078f7c4f895fd9fafd71c1e1c3
+
+# logout
+# localhost:8000/auth/token/logout/
+# Authorization
+# Token c8b670b7836240078f7c4f895fd9fafd71c1e1c3

@@ -1,6 +1,11 @@
 from django.urls import path
 
-from .views import CategorySpoolView, CategoryView, CategoryViewDetail, DetailTodo, NewCreatePostView, PostAPIView, SpoolView, SpoolViewItem, YarnAPIView, DetailYarn, TagAPI, VariablesYarnView, DetailVariablesYarn, TagAPIDetail
+from .views import (
+    NeedlesView, NeedleView, CategorySpoolView, CategoryView,
+    CategoryViewDetail, DetailTodo, NewCreatePostView,
+    PostAPIView, SpoolView, SpoolViewItem, YarnAPIView,
+    DetailYarn, TagAPI, VariablesYarnView, DetailVariablesYarn, TagAPIDetail,
+    NeedleViewChangeVariable)
 
 urlpatterns = [
     path('blog/<int:pk>/', DetailTodo.as_view()),
@@ -16,5 +21,8 @@ urlpatterns = [
     path('spoolCategory/', CategorySpoolView.as_view()),
     path('spool/', SpoolView.as_view()),
     path('spool/<int:pk>', SpoolViewItem.as_view()),
+    path('needles/', NeedlesView.as_view()),
+    path('needles/change/<int:pk>', NeedleViewChangeVariable.as_view()),
+    path('needles/<int:pk>', NeedleView.as_view()),
     # path(''),
 ]

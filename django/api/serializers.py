@@ -1,3 +1,4 @@
+from needles2.models import Needles
 from rest_framework import serializers
 from yarn3.models import Yarn, Tag, Category, VariablesYarn
 from spool.models import Category as CategorySpool, Spool
@@ -71,4 +72,11 @@ class SpoolSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Spool
+        fields = '__all__'
+
+
+#needles
+class NeedlesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Needles
         fields = '__all__'

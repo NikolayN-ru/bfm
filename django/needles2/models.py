@@ -61,3 +61,6 @@ class Needles(models.Model):
 
     class Meta:
         verbose_name_plural = "товар - спицы"
+
+    def __str__(self):
+        return self.title

@@ -1,7 +1,8 @@
-from .serializers import PostSerializer, PostSerializerItem, SpoolSerializer
+from needles2.models import Needles
+from .serializers import NeedlesSerializer, PostSerializer, PostSerializerItem, SpoolSerializer
 from blog.models import Post
 from rest_framework.response import Response
-from rest_framework import generics
+from rest_framework import generics, permissions
 from rest_framework.views import APIView
 from yarn3.models import Yarn, VariablesYarn, Category, Tag
 from spool.models import Category as CategorySpool, Spool
@@ -75,6 +76,7 @@ class PostAPIView(generics.ListAPIView):
     '''вывод списка постов приложения Blog'''
     queryset = Post.objects.all().filter(available=True).order_by("-pk")
     serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
 
 # class DetailTodo(generics.RetrieveAPIView):
@@ -101,6 +103,7 @@ class DetailTodo(APIView):
 class NewCreatePostView(generics.CreateAPIView):
     ''' добавление поста в модель блога '''
     serializer_class = PostSerializer
+
     def perform_create(self, serializer):
         serializer.save()
 
@@ -121,3 +124,31 @@ class SpoolViewItem(generics.RetrieveAPIView):
     '''вывод одной бобины'''
     queryset = Spool.objects.all()
     serializer_class = SpoolSerializer
+
+
+# needles
+class NeedlesView(generics.ListAPIView):
+    queryset = Needles.objects.all()
+    serializer_class = NeedlesSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class NeedleView(generics.RetrieveAPIView):
+    queryset = Needles.objects.all()
+    serializer_class = NeedlesSerializer
+
+
+class NeedleViewChangeVariable(APIView):
+    '''изменение вариаций товара спиц'''
+    # queryset = Needles.objects.all()
+    # serializer_class = NeedlesSerializer
+
+    def post(self, request, pk):
+        # print(str(request.body)[2:-1])
+
+        query = Needles.objects.get(id=pk)
+        query.variablesItem = str(request.body)[2:-1]
+        query.save()
+        # print(query.variablesItem, 'variablesItem')
+        serializer = NeedlesSerializer(query)
+        return Response(serializer.data)
