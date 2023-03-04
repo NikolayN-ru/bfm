@@ -8,8 +8,11 @@ import { orderApi } from "./OrderApi"
 import { waresApi } from "./waresApi"
 import { category2Api } from "./Category2Api"
 import { waresCategory } from "./WaresCategory"
+import { loginApi } from "./LoginApi"
+import { needlesApi } from "./NeedlesApi"
+import TokenApi from "./TokenApi"
 
-export const store = configureStore({
+export const store: any = configureStore({
   reducer: {
     [tagsApi.reducerPath]: tagsApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
@@ -19,7 +22,9 @@ export const store = configureStore({
     [orderApi.reducerPath]: orderApi.reducer,
     [waresApi.reducerPath]: waresApi.reducer,
     [waresCategory.reducerPath]: waresCategory.reducer,
-
+    [loginApi.reducerPath]: loginApi.reducer,
+    [needlesApi.reducerPath]: needlesApi.reducer,
+    token: TokenApi,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -31,5 +36,7 @@ export const store = configureStore({
       orderApi.middleware,
       waresApi.middleware,
       waresCategory.middleware,
+      loginApi.middleware,
+      needlesApi.middleware
     ),
 })

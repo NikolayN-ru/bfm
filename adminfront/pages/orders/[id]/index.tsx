@@ -10,7 +10,7 @@ const index: FC = (): JSX.Element => {
   const router = useRouter()
   const { id } = router.query
 
-  const { data = [], isLoading } = useGetOrderQuery(id)
+  const { data, isLoading } = useGetOrderQuery(id)
   const [changeOrder, { isError }] = useShangeOrderMutation()
 
   if (isLoading) {

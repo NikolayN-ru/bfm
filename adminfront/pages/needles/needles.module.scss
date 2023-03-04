@@ -1,0 +1,15 @@
+.wrapper {
+  ul {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    li {
+        border: 1px solid #000;
+      width: 100px;
+      height: 100px;
+    }
+    li:hover {
+        opacity: .6;
+    }
+  }
+}

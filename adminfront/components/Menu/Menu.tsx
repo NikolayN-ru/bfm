@@ -2,12 +2,14 @@ import Link from "next/link"
 import styles from "./Menu.module.scss"
 
 const items = [
-  { title: "статистика", link: "/statistics" },
-  { title: "заказы", link: "/orders" },
-  { title: "пряжа", link: "/products" },
+  // { title: "статистика", link: "/statistics" },
+  // { title: "заказы", link: "/orders" },
+  // { title: "пряжа", link: "/products" },
+  { title: "логин", link: "/login" },
   { title: "спицы", link: "/needles" },
-  { title: "изделия", link: "/wares" },
-  { title: "вариации", link: "/variables" },
+  // { title: "изделия", link: "/wares" },
+  // { title: "вариации", link: "/variables" },
+  // { title: "блог", link: "/blog" },
 ]
 
 const Menu = () => (
